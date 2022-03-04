@@ -1,0 +1,12 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#FFF" d="M-102-3113h360v4292h-360z"/>
+        <text font-family="Pretendard-Medium, Pretendard" font-size="16" font-weight="400" fill="#333" transform="translate(-86 -36)">
+                            <tspan x="0" y="47">비밀글입니다</tspan>
+                        </text>
+        <g fill="#D0D3D7">
+            <path d="M12.79 5.6a.81.81 0 0 1 .81.81v7.98a.81.81 0 0 1-.81.81H3.21a.81.81 0 0 1-.81-.81V6.41a.81.81 0 0 1 .81-.81h9.58zM8 8.8A1.6 1.6 0 1 0 8 12a1.6 1.6 0 0 0 0-3.2z"/>
+            <path d="M8 .8c2.024 0 3.682 1.557 3.772 3.518l.004.17v2.488h-1.152V4.487c0-1.396-1.171-2.535-2.624-2.535-1.403 0-2.543 1.062-2.62 2.392l-.004.143v2.489H4.224V4.487C4.224 2.447 5.918.8 8 .8z" fill-rule="nonzero"/>
+        </g>
+    </g>
+</svg>

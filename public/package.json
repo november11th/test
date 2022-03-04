@@ -1,0 +1,11 @@
+{
+  "name": "public",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/builder-webpack5": "^6.5.0-alpha.39",
+    "@storybook/manager-webpack5": "^6.5.0-alpha.39",
+    "webpack": "5"
+  }
+}

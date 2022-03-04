@@ -1,0 +1,10 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <rect fill="#8A86E4" width="100" height="100" rx="20"/>
+        <ellipse fill="#645CC3" cx="50" cy="76.364" rx="21.818" ry="5.455"/>
+        <g transform="translate(26.364 18.182)">
+            <path d="M23.636 0C36.69 0 47.273 10.761 47.273 24.036c0 6.578-2.6 12.54-6.81 16.88l-14.04 15.997a3.708 3.708 0 0 1-5.573 0L6.828 40.933C2.606 36.594 0 30.624 0 24.037 0 10.76 10.582 0 23.636 0z" fill="#FFF"/>
+            <ellipse fill="#645CC3" cx="24.1" cy="24.216" rx="8.342" ry="8.382"/>
+        </g>
+    </g>
+</svg>

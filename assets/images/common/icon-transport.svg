@@ -1,0 +1,24 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <rect fill="#67B0F5" width="100" height="100" rx="20"/>
+        <g transform="translate(17.833 17.167)">
+            <path d="M0 0h66.667v66.662H0z"/>
+            <g transform="translate(28.22)" fill="#FFF">
+                <rect x="4.167" width="1.667" height="66.667" rx=".833"/>
+                <circle cx="5" cy="8.333" r="5"/>
+                <circle cx="5" cy="58.329" r="5"/>
+            </g>
+            <g transform="rotate(60 19.11 57.77)" fill="#FFF">
+                <rect x="4.167" width="1.667" height="66.662" rx=".833"/>
+                <circle cx="5" cy="8.333" r="5"/>
+                <circle cx="5" cy="58.329" r="5"/>
+            </g>
+            <g transform="scale(-1 1) rotate(60 -14.11 .232)" fill="#FFF">
+                <rect x="4.167" width="1.667" height="66.662" rx=".833"/>
+                <circle cx="5" cy="8.333" r="5"/>
+                <circle cx="5" cy="58.329" r="5"/>
+            </g>
+            <circle fill="#21619A" cx="33.219" cy="33.331" r="8.333"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg width="577" height="577" viewBox="0 0 577 577" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd" font-family="Pretendard-Bold, Pretendard" font-size="150" font-weight="bold">
+        <text fill-rule="nonzero" fill="#67B0F5">
+                        <tspan x="56" y="358">15 : 02</tspan>
+                    </text>
+        <text opacity=".6" fill="#DFE1E1">
+                        <tspan x="56" y="190">15 : 01</tspan>
+                    </text>
+        <text opacity=".6" fill="#DFE1E1">
+                        <tspan x="54" y="526">15 : 03</tspan>
+                    </text>
+    </g>
+</svg>

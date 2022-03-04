@@ -1,0 +1,16 @@
+<svg width="99" height="99" viewBox="0 0 99 99" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#FFF" d="M-260-577h1920V623H-260z"/>
+        <path fill="#000" opacity=".7" d="M-260-577h1920V623H-260z"/>
+        <path d="M-180-437h1760c22.091 0 40 17.909 40 40v1735H-220V-397c0-22.091 17.909-40 40-40z" fill="#FFF" opacity=".2"/>
+        <g>
+            <path d="M-220-1013h1840c22.091 0 40 17.909 40 40v3730H-260V-973c0-22.091 17.909-40 40-40z" fill="#FFF"/>
+            <g>
+                <rect fill="#81D694" width="99" height="99" rx="21.6"/>
+                <text transform="translate(18.318 14.065)" fill="#FFF" font-family="Pretendard-Bold, Pretendard" font-size="54" font-weight="bold">
+                                <tspan x="0" y="52">JS</tspan>
+                            </text>
+            </g>
+        </g>
+    </g>
+</svg>
