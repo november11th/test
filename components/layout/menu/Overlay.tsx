@@ -9,7 +9,6 @@ const Overlay = styled(motion.div)<{ open: boolean }>`
   left: 0;
   background-color: transparent;
   pointer-events: ${({ open }) => (open ? "auto" : "none")};
-  overflow-y: hidden;
 `;
 
 export default Overlay;

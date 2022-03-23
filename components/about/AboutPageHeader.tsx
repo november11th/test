@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Button from "../elements/Button";
 import { ButtonProps } from "../elements/Button";
 import Text from "../elements/Text";
-import PageHeader from "../PageHeader";
+import PageHeader from "../layout/PageHeader";
 
 const Container = styled(PageHeader)`
   padding-top: 166px;

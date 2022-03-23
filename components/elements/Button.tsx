@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import classNames from "classnames";
 
 const Container = styled.button`
   display: inline-block;
@@ -72,6 +73,14 @@ const Container = styled.button`
       background-color: ${({ theme }) => theme.colors.grayEa};
     }
   }
+
+  /* disabled */
+  &.is--disabled {
+    cursor: default;
+    pointer-events: none;
+    color: ${({ theme }) => theme.colors.grayAf} !important;
+    border-color: ${({ theme }) => theme.colors.grayAf} !important;
+  }
 `;
 const Text = styled.p`
   display: inline;
@@ -93,12 +102,25 @@ export interface ButtonProps {
   text: string;
   onPress?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
-const Button = ({ size, color, text, onPress, className }: ButtonProps) => {
+const Button = ({
+  size,
+  color,
+  text,
+  onPress,
+  className,
+  disabled,
+}: ButtonProps) => {
   return (
     <Container
-      className={`size--${size} color--${color} ${className}`}
+      className={classNames([
+        `size--${size} color--${color} ${className}`,
+        {
+          "is--disabled": disabled,
+        },
+      ])}
       onClick={onPress}
     >
       <Text>{text}</Text>

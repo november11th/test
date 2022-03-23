@@ -8,6 +8,7 @@ import EmphasisCard from "./EmphasisCard";
 
 const Container = styled.div`
   position: relative;
+  margin: auto;
 `;
 
 const Inside = styled.div`
@@ -30,6 +31,10 @@ const NormalCardWrapper = styled(CardWrapperBase)`
   display: block;
   position: relative;
   z-index: 9;
+
+  ${Container}:hover & {
+    filter: blur(5px);
+  }
 `;
 
 const HoveredCardWrapper = styled(CardWrapperBase)`
@@ -41,19 +46,16 @@ const HoveredCardWrapper = styled(CardWrapperBase)`
   width: calc(100%);
   height: calc(100%);
 
-  background-color: ${({ theme }) => theme.colors.grayF4};
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  visibility: hidden;
-  transform: translateX(100%);
-  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-
+  background-color: rgb(0, 0, 0, 0.6);
   border-radius: ${({ theme }) => theme.size.cardBorderRadius};
   box-shadow: 0 2px 20px 5px rgba(0, 0, 0, 0.03);
   border: solid 0.5px #d0d3d7;
+  opacity: 0;
 
   ${Container}:hover & {
-    visibility: visible;
-    transform: translateX(0);
+    opacity: 1;
   }
 `;
 
@@ -62,7 +64,6 @@ interface Props {
 }
 const CardUnit = ({ data }: Props) => {
   const {
-    id,
     imgSrc,
     category,
     isNew,
@@ -72,16 +73,17 @@ const CardUnit = ({ data }: Props) => {
     description,
     dataType = "data",
     cardType = "normal",
+    displayName,
   } = data;
 
-  const [marquePlay, setMarquePlay] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <Container
-      onMouseEnter={() => setMarquePlay(true)}
-      onMouseLeave={() => setMarquePlay(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      <Link href={`/${dataType}/${id}`}>
+      <Link href={`/${dataType}/${displayName}`}>
         <a>
           <Inside>
             <NormalCardWrapper>
@@ -92,6 +94,8 @@ const CardUnit = ({ data }: Props) => {
                   imgSrc={imgSrc}
                   category={category}
                   title={title}
+                  itemHidden={hovered}
+                  dataType={dataType}
                 />
               ) : (
                 <EmphasisCard
@@ -100,6 +104,7 @@ const CardUnit = ({ data }: Props) => {
                   imgSrc={imgSrc}
                   category={category}
                   title={title}
+                  itemHidden={hovered}
                 />
               )}
             </NormalCardWrapper>
@@ -108,7 +113,8 @@ const CardUnit = ({ data }: Props) => {
                 tagList={tagList}
                 title={title}
                 description={description}
-                marquePlay={marquePlay}
+                partner={partner}
+                dataType={dataType}
               />
             </HoveredCardWrapper>
           </Inside>

@@ -32,6 +32,11 @@ export const theme = {
     point78: "#63a9ea",
     point4A: "#477aab",
     point6B: "#67b0f5",
+    pointA5: "#A5A6F6",
+    pointEf: "#EF5DA8",
+    pointEb: "#EB5853",
+    point60: "#60D98D",
+    point8C: "#8c84eb",
     bg: "#f4f8ff",
     error: "#eb5853",
     loading: "#748BA7",
@@ -54,5 +59,12 @@ export const theme = {
     congestionLevel2: "#FACB18",
     congestionLevel3: "#F8990E",
     congestionLevel4: "#E31E03",
+
+    bannerBG01: "rgba(103,176,245,0.8)",
+    bannerBG02: "rgba(12, 139, 255, 0.8)",
+    bannerBG03: "rgba(140,132,235,0.8)",
+    bannerBG04: "rgba(96,217,141,0.8)",
+
+    menuCatalogHeader: "#A7A7A7",
   },
 };

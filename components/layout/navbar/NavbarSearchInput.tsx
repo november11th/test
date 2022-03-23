@@ -174,7 +174,12 @@ const NavbarSearchInput = ({ navBarTheme }: Props) => {
 
   const navigateSearchPage = () => {
     if (searchText.length === 0) return;
-    router.push(`${process.env.NEXT_PUBLIC_SITE_URL}/search?q=${searchText}`);
+    router.push(`/search?q=${searchText}`);
+  };
+
+  const handleSearchClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    navigateSearchPage();
   };
 
   return (
@@ -199,7 +204,7 @@ const NavbarSearchInput = ({ navBarTheme }: Props) => {
 
         <SearchButton
           className={navBarTheme === "white" ? "white-theme" : "black-theme"}
-          onClick={() => navigateSearchPage()}
+          onClick={handleSearchClick}
         >
           {navBarStyle[navBarTheme].search}
         </SearchButton>

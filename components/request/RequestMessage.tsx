@@ -17,6 +17,8 @@ const Container = styled.div`
   letter-spacing: -0.4px;
   color: ${({ theme }) => theme.colors.white};
   opacity: 0;
+
+  transform: translateY(-50%);
 `;
 
 interface Props {

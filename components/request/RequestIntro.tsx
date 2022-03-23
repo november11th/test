@@ -3,16 +3,16 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import RequestMessage from "./RequestMessage";
-import InnerContainerBase from "../InnerContainerBase";
+import InnerContainerBase from "../layout/InnerContainerBase";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
-const InnerContainer = styled(InnerContainerBase)``;
+const InnerContainer = styled(InnerContainerBase)`
+  display: flex;
+  justify-content: center;
+`;
 const Container = styled.div`
   min-height: 100vh;
-  background-image: url("./images/temporary/img-project_bg1.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 `;
 
 const RequestIntro = () => {
@@ -50,6 +50,13 @@ const RequestIntro = () => {
 
   return (
     <Container ref={outerDivRef1}>
+      <Image
+        src={"/images/temporary/img-project_bg1.jpg"}
+        layout={"fill"}
+        objectFit={"cover"}
+        priority={true}
+        alt={"bg1"}
+      />
       <InnerContainer>
         <RequestMessage id={"section1"} text={"원하는 데이터가 없으신가요?"} />
         <RequestMessage

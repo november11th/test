@@ -35,17 +35,17 @@ const Footer = () => {
     <Container>
       <Inside>
         <InsideRowLink>
-          <Link href={"/"} passHref>
+          <Link href={"/terms"} passHref>
             <FooterTextLink>
               <Text type={"copy"} scale={"5"}>
                 이용약관
               </Text>
             </FooterTextLink>
           </Link>
-          <Link href={"/"} passHref>
+          <Link href={"/privacy"} passHref>
             <FooterTextLink>
               <Text type={"copy"} scale={"5"}>
-                개인정보처리방침
+                개인정보 처리방침
               </Text>
             </FooterTextLink>
           </Link>

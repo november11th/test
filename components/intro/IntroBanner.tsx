@@ -1,42 +1,57 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "@emotion/styled";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, Autoplay } from "swiper";
 import IntroBannerItem from "./IntroBannerItem";
 import { Banner } from "../../types/banner";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper";
 
 const Container = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Inside = styled.div`
-  width: 97%;
+  position: relative;
 `;
 
 const SwiperContainer = styled(Swiper)`
-  border-radius: 18px;
-  cursor: pointer;
+  position: relative;
+  height: 809px;
 
   .pagination {
     &.swiper-pagination.swiper-pagination-bullets {
       text-align: right;
       font-size: 0;
-      bottom: 40px;
-      left: auto;
-      right: 33px;
+      bottom: 0px;
+      right: 0px;
 
       .swiper-pagination-bullet {
-        width: 14px;
-        height: 14px;
-        margin: 0 7px;
-        background: white;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+        background: #8e8e8e;
       }
     }
   }
+`;
+
+const PrevButtonWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-75px, -50%);
+  color: ${({ theme }) => theme.colors.grayD0};
+
+  --swiper-navigation-size: 60px;
+`;
+
+const NextButtonWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(75px, -50%);
+  color: ${({ theme }) => theme.colors.grayD0};
+
+  --swiper-navigation-size: 60px;
 `;
 
 interface Props {
@@ -46,27 +61,34 @@ interface Props {
 const IntroBanner = ({ bannerList }: Props) => {
   return (
     <Container>
-      <Inside>
-        <SwiperContainer
-          spaceBetween={50}
-          slidesPerView={1}
-          modules={[Pagination, Autoplay]}
-          autoplay={{ delay: 2000 }}
-          pagination={{ clickable: true, el: ".pagination" }}
-        >
-          {bannerList.map(({ src, link, title, category }, index) => (
-            <SwiperSlide key={`${index}-${title}`}>
-              <IntroBannerItem
-                src={src}
-                title={title}
-                link={link}
-                category={category}
-              />
-            </SwiperSlide>
-          ))}
-          <div className="swiper-pagination pagination" />
-        </SwiperContainer>
-      </Inside>
+      <SwiperContainer
+        slidesPerView={1}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        modules={[Autoplay, Pagination, Navigation]}
+        autoplay={{ delay: 4000 }}
+        pagination={{ clickable: true, el: ".pagination" }}
+      >
+        {bannerList.map((item: any, index: number) => (
+          <SwiperSlide key={index}>
+            <IntroBannerItem
+              category={item.category}
+              title={item.title}
+              description={item.description}
+              buttonTitle={item.buttonTitle}
+              link={item.link}
+              imageUrl={item.imageUrl}
+              bannerIndex={index}
+            />
+          </SwiperSlide>
+        ))}
+        <div className="swiper-pagination pagination" />
+      </SwiperContainer>
+
+      <PrevButtonWrapper className={"swiper-button-prev"} />
+      <NextButtonWrapper className={"swiper-button-next"} />
     </Container>
   );
 };

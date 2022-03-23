@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Text from "../../elements/Text";
 import { theme } from "../../../styles/theme";
+import { useEffect, useState } from "react";
 
 const w = 40;
 const ButtonContainer = styled.div`
@@ -89,9 +90,15 @@ interface Props {
   selectedIndex: number;
 }
 const SubwaylineSelector = ({ list, setIndex, selectedIndex }: Props) => {
+  const [list_, setlist_] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    setlist_(list);
+  }, [list]);
+
   return (
     <Container>
-      {list.map((item, index) => {
+      {list_.map((item, index) => {
         return (
           <Button
             key={`${index}-${item}`}
@@ -108,7 +115,7 @@ const SubwaylineSelector = ({ list, setIndex, selectedIndex }: Props) => {
 
 SubwaylineSelector.defaultProps = {
   list: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-  initialIndex: 0,
+  selectedIndex: 0,
   setIndex: console.log,
 };
 export default SubwaylineSelector;

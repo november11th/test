@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-import Marquee from "react-fast-marquee";
 import { CardData } from "../../types/cardData";
-import TagList from "../TagList";
+import TagList from "../elements/TagList";
 import Text from "../elements/Text";
 import { theme } from "../../styles/theme";
+import TitleAndPartnerItem from "./TitleAndPartnerItem";
 
 const Container = styled.div`
   position: relative;
@@ -18,64 +18,76 @@ const TagListWrapper = styled.div`
   top: 20px;
 `;
 
+const TextWrapper = styled(Text)`
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const WhiteTagList = styled(TagList)`
+  & span {
+    border-color: white;
+  }
+  & p {
+    color: white;
+  }
+
+  && .more {
+    & em {
+      background-color: white;
+    }
+  }
+`;
+
+const TitleAndPartnerItemWrapper = styled.div`
+  position: absolute;
+  left: 23px;
+  top: 96px;
+  width: 254px;
+  height: 56px;
+`;
+
 const DescriptionWrapper = styled.div`
   position: absolute;
   left: 23px;
-  top: 320px;
+  top: 165px;
   width: 254px;
+  height: 200px;
 
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1.2em;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+  overflow: hidden;
+
   color: black;
-
-  height: 56px;
-  -webkit-line-clamp: 2;
 `;
 
-const MarqueeWrapper = styled(Marquee)`
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  height: 100%;
-`;
+type Props = Partial<CardData>;
 
-const MarqueeText = styled.span`
-  font-size: 80px;
-  font-weight: bold;
-  line-height: 1;
-  margin-left: 100px;
-`;
-
-interface Props extends Partial<CardData> {
-  marquePlay: boolean;
-}
 const HoveredCard = ({
-  title = "",
   description = "",
   tagList = [],
-  marquePlay,
+  title = "",
+  partner,
+  dataType,
 }: Props) => {
   return (
     <Container>
       <TagListWrapper>
-        <TagList tagList={tagList} size={"s"} />
+        <WhiteTagList tagList={tagList} size={"s"} />
       </TagListWrapper>
-      <MarqueeWrapper
-        direction={"left"}
-        speed={100}
-        gradient={false}
-        loop={marquePlay ? 0 : -1}
-      >
-        <MarqueeText>{marquePlay ? title : ""}</MarqueeText>
-      </MarqueeWrapper>
+      <TitleAndPartnerItemWrapper>
+        <TitleAndPartnerItem
+          title={title}
+          partner={partner}
+          oneLine={dataType === "data"}
+        />
+      </TitleAndPartnerItemWrapper>
       <DescriptionWrapper>
-        <Text type={"copy"} scale={"6"} color={theme.colors.black}>
+        <TextWrapper type={"copy"} scale={"6"} color={theme.colors.white}>
           {description}
-        </Text>
+        </TextWrapper>
       </DescriptionWrapper>
     </Container>
   );

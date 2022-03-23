@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import PlayController from "../components/interactive/subway/PlayController";
+import PlayController from "../components/interactive/common/PlayController";
 
 export default {
   title: "Subway/PlayController",

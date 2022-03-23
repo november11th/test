@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import TagList from "../components/TagList";
+import TagList from "../components/elements/TagList";
 
 export default {
   title: "Common/tagList",

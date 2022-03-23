@@ -6,46 +6,17 @@ import Link from "next/link";
 import Text from "../elements/Text";
 
 const Container = styled.div`
-  grid-column: span 3 / span 3;
   position: relative;
 `;
 
-const MarqueeWrapper = styled(Marquee)`
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  height: 100%;
-`;
-
-const MarqueeText = styled.span`
-  font-size: 200px;
-  font-weight: 600;
-  line-height: 1;
-  margin-right: 400px;
-  color: ${({ theme }) => theme.colors.grayD9};
-`;
-
-const GridContainer = styled.div`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  width: 100%;
-  height: 100%;
-
-  z-index: 101;
-`;
-
-const CardContainer = styled.a`
+const Inside = styled.div`
+  overflow: hidden;
   position: relative;
-  background-color: white;
+  width: ${({ theme }) => theme.size.cardWidth};
+  height: ${({ theme }) => theme.size.cardHeight};
   border-radius: ${({ theme }) => theme.size.cardBorderRadius};
   box-shadow: 0 2px 20px 5px rgba(0, 0, 0, 0.03);
   border: solid 0.5px #d0d3d7;
-  width: ${({ theme }) => theme.size.cardWidth};
-  height: ${({ theme }) => theme.size.cardHeight};
 `;
 
 const CardInside = styled.div`
@@ -60,7 +31,7 @@ const IconWrapper = styled.div`
   transform: translate(-50%, -50%);
 
   svg {
-    ${CardContainer}:hover & {
+    ${Inside}:hover & {
       animation: rotate 0.5s linear forwards;
       transform-origin: 50% 50%;
     }
@@ -73,9 +44,9 @@ const IconWrapper = styled.div`
   }
 `;
 
-const SubTitle = styled.div``;
+const Title = styled.div``;
 
-const LinkText = styled.span`
+const SubTitle = styled.span`
   position: absolute;
   left: 26px;
   bottom: 26px;
@@ -87,36 +58,29 @@ const LinkText = styled.span`
 const ProjectJoinCard = () => {
   return (
     <Container>
-      <MarqueeWrapper direction={"left"} speed={300} gradient={false}>
-        <MarqueeText>PUZZLE PROJECT</MarqueeText>
-      </MarqueeWrapper>
-
-      <GridContainer>
-        <div />
+      <Inside>
         <Link href={"/request"} passHref>
-          <CardContainer>
+          <a data-testid={"project-join-card-test"}>
             <CardInside>
-              <SubTitle>
+              <Title data-testid={"project-join-card-title"}>
                 <Text type={"copy"} scale={"3"}>
                   마음에 드는
+                  <br />
+                  카드가 없나요?
                 </Text>
-                <Text type={"copy"} scale={"3"}>
-                  상품이 없나요?
-                </Text>
-              </SubTitle>
+              </Title>
               <IconWrapper>
                 <SvgIconPlus />
               </IconWrapper>
-              <LinkText>
+              <SubTitle data-testid={"project-join-card-subtitle"}>
                 <Text type={"copy"} scale={"7"}>
-                  PUZZLE 프로젝트 참여하기
+                  데이터 요청하기
                 </Text>
-              </LinkText>
+              </SubTitle>
             </CardInside>
-          </CardContainer>
+          </a>
         </Link>
-        <div />
-      </GridContainer>
+      </Inside>
     </Container>
   );
 };

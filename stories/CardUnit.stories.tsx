@@ -31,6 +31,7 @@ const BASE_DATA: CardData = {
     "TMAP은 티맵모빌리티에서 제공하는 지도 및 텔레매틱스 서비스를 위한 통합 브랜드입니다.",
   tagList: ["장소 혼잡도", "코로나", "여행"],
   cardType: "normal",
+  displayName: "",
 };
 
 export const Normal = Template.bind({});
@@ -48,5 +49,18 @@ Emphasis.args = {
     imgSrc: "/temp/icon-spot.svg",
     partner: undefined,
     cardType: "emphasis",
+  },
+};
+
+export const EmphasisLongText = Template.bind({});
+EmphasisLongText.args = {
+  data: {
+    ...BASE_DATA,
+    title: "장소 혼잡도가 궁금하다면?",
+    imgSrc: "/temp/icon-spot.svg",
+    partner: undefined,
+    cardType: "emphasis",
+    description:
+      "TMAP은 티맵모빌리티에서 제공하는 지도 및 텔레매틱스 서비스를 위한 통합 브랜드입니다TMAP은 티맵모빌리티에서 제공하는 지도 및 텔레매틱스 서비스를 위한 통합 브랜드입니다TMAP은 티맵모빌리티에서 제공하는 지도 및 텔레매틱스 서비스를 위한 통합 브랜드입니다 TMAP은 티맵모빌리티에서 제공하는 지도 및 텔레매틱스 서비스를 위한 통합 브랜드입니다.",
   },
 };

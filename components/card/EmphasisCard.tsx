@@ -3,7 +3,7 @@ import { CardData } from "../../types/cardData";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import Text from "../elements/Text";
-import CategoryLabel from "../CategoryLabel";
+import CategoryLabel from "../elements/CategoryLabel";
 import { theme } from "../../styles/theme";
 import classNames from "classnames";
 
@@ -53,6 +53,10 @@ const TitleWrapper = styled.div`
 
   height: 56px;
   -webkit-line-clamp: 2;
+
+  && p {
+    font-weight: bold;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -62,32 +66,49 @@ const ImageWrapper = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-type Props = Partial<CardData>;
+const PartnerWrapper = styled.div`
+  position: absolute;
+  left: 23px;
+  top: 346px;
+  p {
+    opacity: 0.9;
+  }
+`;
+
+const ItemWrapper = styled.div<{ visible: boolean }>`
+  transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  opacity: ${({ visible }) => (visible ? "1" : "0")};
+`;
+
+type Props = Partial<CardData> & { itemHidden: boolean };
 
 const EmphasisCard = ({
   imgSrc = "",
   isNew = false,
   title = "",
   category = "",
+  itemHidden = false,
 }: Props) => {
   return (
     <Container>
       <ImageWrapper>
         <Image src={imgSrc} width={180} height={180} alt={title ?? ""} />
       </ImageWrapper>
-      <CategoryLabel text={category} color={theme.colors.black} />
-      {isNew && (
-        <NewWrapper>
-          <Text type={"copy"} scale={"8"}>
-            NEW
+      <ItemWrapper visible={!itemHidden}>
+        <CategoryLabel text={category} color={theme.colors.black} />
+        {isNew && (
+          <NewWrapper>
+            <Text type={"copy"} scale={"8"}>
+              NEW
+            </Text>
+          </NewWrapper>
+        )}
+        <TitleWrapper>
+          <Text type={"copy"} scale={"5"} color={theme.colors.black}>
+            {title}
           </Text>
-        </NewWrapper>
-      )}
-      <TitleWrapper>
-        <Text type={"copy"} scale={"5"} color={theme.colors.black}>
-          {title}
-        </Text>
-      </TitleWrapper>
+        </TitleWrapper>
+      </ItemWrapper>
     </Container>
   );
 };

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import InnerContainerBase from "../components/InnerContainerBase";
+import InnerContainerBase from "../components/layout/InnerContainerBase";
 import Text from "../components/elements/Text";
 import styled from "@emotion/styled";
-import { sampleInsightList } from "../temp_data/insight";
+import { newSampleInsightList } from "../temp_data/insight";
 import ThemeFilter from "../components/themes/ThemeFilter";
 
 import useSWR from "swr";
-import CardListWithLabel from "../components/CardListWithLabel";
-import CardListWithLabelLoading from "../components/CardListWithLabelLoading";
+import CardListWithLabel from "../components/card/CardListWithLabel";
+import CardListWithLabelLoading from "../components/card/CardListWithLabelLoading";
 import { CardData } from "../types/cardData";
+import { timeout } from "../utils/common";
 
 const Container = styled(InnerContainerBase)`
   margin-top: ${({ theme }) => theme.size.navBarHeight};
@@ -21,10 +22,6 @@ const SubtitleWrapper = styled.div`
 const CardListWrapper = styled.div`
   margin-top: 106px;
 `;
-
-function timeout(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 interface Props {
   count: number;
@@ -41,7 +38,10 @@ const ThemePage = ({ count, themeList }: Props) => {
       await timeout(1000);
 
       if (selectedTheme === "점유율") return [];
-      return sampleInsightList;
+      return Object.values(newSampleInsightList).reduce(
+        (list: any, total) => [...total, ...list],
+        []
+      );
     }
   );
 

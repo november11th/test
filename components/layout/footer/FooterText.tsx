@@ -18,7 +18,7 @@ const FooterText = styled.span`
     transform: translateY(-50%);
     background-color: #d0d3d7;
   }
-  &:last-child {
+  &:last-of-type {
     margin-right: 0;
     padding-right: 0;
     &:after {

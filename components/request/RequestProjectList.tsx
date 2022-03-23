@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
-import InnerContainerBase from "../InnerContainerBase";
-import CardList from "../CardList";
+import InnerContainerBase from "../layout/InnerContainerBase";
+import CardList from "../card/CardList";
 import Text from "../elements/Text";
 import { sampleDataList } from "../../temp_data/data";
 
-const dummy_productUnit = sampleDataList.slice(0, 4);
+const dummy_productUnit = sampleDataList.filter(
+  (data) => data.partner !== "SKTelecom"
+);
 const Container = styled(InnerContainerBase)`
   padding-top: calc(${({ theme }) => theme.size.navBarHeight} + 40px);
   display: flex;
@@ -31,15 +33,11 @@ const RequestProjectList = () => {
     <Container>
       <Title>
         <Text type={"title"} scale={"3"}>
-          {`현업을 통해\n출시된\nData Intelligence List`}
+          {`협업을 통해\n출시된\nData Intelligence List`}
         </Text>
       </Title>
       <ProductContainer>
-        <CardList
-          dataList={dummy_productUnit}
-          gridColsCount={3}
-          isMain={false}
-        />
+        <CardList dataList={dummy_productUnit} gridColsCount={3} />
       </ProductContainer>
     </Container>
   );

@@ -4,7 +4,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import ProjectParticipateHeader from "./ProjectParticipateHeader";
 import RequestProcedureStep from "./RequestProcedureStep";
-import InnerContainerBase from "../InnerContainerBase";
+import InnerContainerBase from "../layout/InnerContainerBase";
+import Image from "next/image";
+import { steps } from "popmotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,23 +47,15 @@ const Background = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
-  &.step1 {
-    background: url("./images/temporary/img-project_bg2.jpg");
-  }
-  &.step2 {
-    background: url("./images/temporary/img-project_bg3.jpg");
-  }
-  &.step3 {
-    background: url("./images/temporary/img-project_bg4.jpg");
-  }
-  &.step4 {
-    background: url("./images/temporary/img-project_bg5.jpg");
-  }
-  &.step5 {
-    background: url("./images/temporary/img-project_bg6.jpg");
-  }
 `;
+
+const backgroundImage = [
+  "/images/temporary/img-project_bg2.jpg",
+  "/images/temporary/img-project_bg3.jpg",
+  "/images/temporary/img-project_bg4.jpg",
+  "/images/temporary/img-project_bg5.jpg",
+  "/images/temporary/img-project_bg6.jpg",
+];
 
 interface Props {
   onButtonPress: () => void;
@@ -108,10 +102,17 @@ const RequestProcedure = ({ onButtonPress }: Props) => {
 
   return (
     <Container ref={outerDivRef2}>
-      <Background className="background step1" />
-      <Background className="background step2" />
-      <Background className="background step3" />
-      <Background className="background step4" />
+      {backgroundImage.map((imageUrl, index) => (
+        <Background className="background" key={imageUrl}>
+          <Image
+            src={imageUrl}
+            layout={"fill"}
+            objectFit={"cover"}
+            priority={true}
+            alt={`bg${index}`}
+          />
+        </Background>
+      ))}
 
       <InnerContainer>
         <ProjectParticipateHeader onPress={onButtonPress} />

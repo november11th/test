@@ -36,21 +36,21 @@ const RelatedProductCard = ({ data, className }: Props) => {
   const { type, name, partner } = data;
   return (
     <Container className={className}>
-      <Link href={"/"} passHref>
-        <Box>
-          <Text type={"copy"} scale={"6"}>
-            {type}
+      {/* <Link href={"/"} passHref> */}
+      <Box>
+        <Text type={"copy"} scale={"6"}>
+          {type}
+        </Text>
+        <Div>
+          <Text type={"copy"} scale={"3"}>
+            {name}
           </Text>
-          <Div>
-            <Text type={"copy"} scale={"3"}>
-              {name}
-            </Text>
-            {partner && (
-              <Text type={"copy"} scale={"7"}>{`With ${partner}`}</Text>
-            )}
-          </Div>
-        </Box>
-      </Link>
+          {partner && (
+            <Text type={"copy"} scale={"7"}>{`With ${partner}`}</Text>
+          )}
+        </Div>
+      </Box>
+      {/* </Link> */}
     </Container>
   );
 };

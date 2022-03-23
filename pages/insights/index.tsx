@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import InnerContainerBase from "../../components/InnerContainerBase";
+import InnerContainerBase from "../../components/layout/InnerContainerBase";
 import Text from "../../components/elements/Text";
 import styled from "@emotion/styled";
 import { CardData } from "../../types/cardData";
 import ScrollTopFloatingButton from "../../components/elements/ScrollTopFloatingButton";
-import { sampleInsightList } from "../../temp_data/insight";
-import CardListWithLabel from "../../components/CardListWithLabel";
+import { newSampleInsightList } from "../../temp_data/insight";
+import CardListWithLabel from "../../components/card/CardListWithLabel";
 
 const Container = styled(InnerContainerBase)`
   margin-top: ${({ theme }) => theme.size.navBarHeight};
@@ -46,10 +46,15 @@ const InsightPage = ({ dataList, count }: Props) => {
 };
 
 export async function getStaticProps() {
+  const insightList = Object.values(newSampleInsightList).reduce(
+    (list: any, total) => [...total, ...list],
+    []
+  );
+
   return {
     props: {
-      dataList: [...sampleInsightList, ...sampleInsightList],
-      count: 16,
+      dataList: insightList,
+      count: insightList.length,
     },
   };
 }

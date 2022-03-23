@@ -17,7 +17,7 @@ const Inside = styled.div`
   height: 100%;
 `;
 
-const GridContainer = styled.div`
+export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
@@ -35,7 +35,7 @@ const GridContainer = styled.div`
   }
 `;
 
-const GridItem = styled.div`
+export const GridItem = styled.div`
   padding: 8px;
   svg {
     width: 93%;

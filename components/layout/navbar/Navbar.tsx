@@ -66,7 +66,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsOpenMenu(false);
-  }, [router.pathname, setIsOpenMenu]);
+  }, [router.pathname, router.query, setIsOpenMenu]);
 
   const navBarStyle = () => {
     switch (navBarTheme) {

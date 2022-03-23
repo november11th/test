@@ -1,4 +1,6 @@
-// 객차혼잡도 기본 단위
+import { Dow } from "./common";
+
+// 칸혼잡도 기본 단위
 export interface CarProps {
   value: number;
   label?: string;
@@ -15,30 +17,49 @@ export enum Direction {
   DOWN,
 }
 
-// 진입열차 상태
-export enum TrainStatus {
-  COMING,
-  ARRIVED,
-  LEFT,
-  MOVING,
-  TERMINATED,
-  API_ERROR,
-}
-
-export interface ICongestionCar {
+export interface CongestionCar {
   subwayLine: number;
   updnLine: Direction;
   station?: string;
   nextStation?: string;
   endStation: string;
   dt: number;
-  dow: string;
+  dow: Dow;
   time: string;
   congestionTrainLevel: number;
   congestionCarLevel: Array<CarProps>;
 }
 
-export interface ICongestionCarStat {
+export interface CongestionCarStat {
   time: string;
-  data: ICongestionCar[];
+  data: CongestionCar[];
+}
+
+export interface CongestionTrainStat {
+  dow: Dow;
+  dt: string;
+  station: string;
+  nextStation: string;
+  subwayLine: number;
+  updnline: number;
+  time: string[];
+  congestionTrain: number[];
+  congestionTrainLevel: number[];
+}
+
+export interface CongestionRouteStat {
+  dow: Dow;
+  dt: string;
+  fromStation: string;
+  toStation: string;
+  subwayLine: number[];
+  time: string[];
+  station: string[];
+  congestionTrain: number[];
+  congestionTrainLevel: number[];
+}
+
+export interface Option {
+  title: string;
+  station?: string;
 }

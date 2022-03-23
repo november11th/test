@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SearchInput from "../components/interactive/SearchInput";
+import SearchInput from "../components/interactive/common/SearchInput";
 
 export default {
   title: "Common/SearchInput",

@@ -20,8 +20,8 @@ const CarContainer = styled.div`
 `;
 const Box = styled.div`
   display: flex;
-  width: 83px;
-  height: 60px;
+  width: 70px;
+  height: 50px;
   align-items: center;
   justify-content: center;
   border-radius: 10px;

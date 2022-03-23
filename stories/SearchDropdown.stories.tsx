@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SearchDropdown from "../components/interactive/SearchDropdown";
+import SearchDropdown from "../components/interactive/common/SearchDropdown";
 
 export default {
   title: "Common/SearchDropdown",

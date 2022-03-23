@@ -1,3 +1,5 @@
+export type DataInsightType = "data" | "insights";
+
 export interface CardData {
   id: string;
   imgSrc: string;
@@ -7,6 +9,7 @@ export interface CardData {
   partner?: string;
   description: string;
   tagList: string[];
-  dataType?: "data" | "insight";
+  dataType?: DataInsightType;
   cardType?: "normal" | "emphasis";
+  displayName: string;
 }

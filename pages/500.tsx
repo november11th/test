@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import InnerContainerBase from "../components/InnerContainerBase";
+import InnerContainerBase from "../components/layout/InnerContainerBase";
 import ErrorPagePanel from "../components/error/ErrorPagePanel";
 import Text from "../components/elements/Text";
 import ErrorPageMainButton from "../components/error/ErrorPageMainButton";

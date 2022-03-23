@@ -1,5 +1,5 @@
 import { useNavBarTheme } from "./useNavBarTheme";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { NavBarTheme } from "../types/common";
 import { gsap } from "gsap";
@@ -22,20 +22,24 @@ export default function useNavBarThemeEffectWithScroll({
   const [, setNavBarTheme] = useNavBarTheme();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    if (trigger) {
+      gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.create({
-      id,
-      trigger,
-      start,
-      end,
-      scrub: true,
-      onEnter: () => setNavBarTheme(onEnterColor),
-      onLeaveBack: () => setNavBarTheme(onLeaveBackColor),
-    });
+      ScrollTrigger.create({
+        id,
+        trigger,
+        start,
+        end,
+        scrub: true,
+        onEnter: () => setNavBarTheme(onEnterColor),
+        onLeaveBack: () => setNavBarTheme(onLeaveBackColor),
+      });
+    }
     return () => {
-      ScrollTrigger.getById(id).kill(true);
-      setNavBarTheme("white");
+      if (ScrollTrigger.getById(id)) {
+        ScrollTrigger.getById(id).kill(true);
+        setNavBarTheme("white");
+      }
     };
-  }, [setNavBarTheme]);
+  }, [setNavBarTheme, trigger]);
 }

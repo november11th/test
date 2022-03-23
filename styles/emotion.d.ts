@@ -35,6 +35,11 @@ declare module "@emotion/react" {
       point78: string;
       point4A: string;
       point6B: string;
+      pointA5: string;
+      pointEf: string;
+      pointEb: string;
+      point60: string;
+      point8C: string;
       bg: string;
       error: string;
       loading: string;
@@ -57,7 +62,20 @@ declare module "@emotion/react" {
       congestionLevel2: string;
       congestionLevel3: string;
       congestionLevel4: string;
+
+      bannerBG01: string;
+      bannerBG02: string;
+      bannerBG03: string;
+      bannerBG04: string;
+
+      menuCatalogHeader: string;
     };
   }
 }
 declare module "*.svg";
+
+declare module "chart.js" {
+  interface TooltipPositionerMap {
+    myCustomPositioner: TooltipPositionerFunction<ChartType>;
+  }
+}

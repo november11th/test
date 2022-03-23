@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import CardListWithLabelLoading from "../components/CardListWithLabelLoading";
+import CardListWithLabelLoading from "../components/card/CardListWithLabelLoading";
 
 export default {
   title: "Common/CardListWithLabelLoading",

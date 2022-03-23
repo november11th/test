@@ -13,6 +13,19 @@ const Tab = styled.div`
   display: flex;
   justify-content: space-between;
 
+  /* 왼쪽에 StickyTab Buffer (검색컴포넌트 그림자 숨기기) */
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    transform: translateX(-30px);
+    width: 30px;
+    height: 100%;
+    background-color: ${({ theme }) => theme.colors.white};
+  }
+
   &::before {
     content: "";
     display: block;
@@ -46,12 +59,11 @@ const TabAnchor = styled.button`
 
   &::after {
     content: "";
-    display: block;
     position: absolute;
-    bottom: 0px;
-    left: 0;
+    bottom: -1px;
+    left: -2px;
     z-index: 2;
-    width: 100%;
+    width: 105%;
     height: 2px;
     background-color: ${({ theme }) => theme.colors.black};
     opacity: 0;
@@ -115,6 +127,7 @@ const StickyTab = ({
                 noUnderline: !hasUnderline,
               })}
               onClick={() => setTabIndex(i)}
+              data-testid={`tab-anchor-${i}`}
             >
               <Text
                 type={"copy"}

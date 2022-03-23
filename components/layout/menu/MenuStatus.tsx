@@ -6,6 +6,8 @@ const MenuStatus = styled.span`
   margin-bottom: 8px;
   font-size: 22px;
   line-height: 22px;
+
+  margin-top: 120px;
 `;
 
 export default MenuStatus;

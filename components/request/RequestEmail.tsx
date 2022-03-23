@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
-import InnerContainerBase from "../InnerContainerBase";
+import InnerContainerBase from "../layout/InnerContainerBase";
 import { theme } from "../../styles/theme";
 
 const InnerContainer = styled(InnerContainerBase)``;

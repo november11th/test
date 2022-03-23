@@ -102,11 +102,23 @@ interface Props {
   scale: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
   color: string;
   className?: string;
+  testId?: string;
 }
 
-const Text = ({ children, type, scale, color, className }: Props) => {
+const Text = ({
+  children,
+  type,
+  scale,
+  color,
+  className,
+  testId = "",
+}: Props) => {
   return (
-    <P className={`${type}-case${scale} ${className}`} color={color}>
+    <P
+      className={`${type}-case${scale} ${className}`}
+      color={color}
+      data-testid={testId}
+    >
       {children}
     </P>
   );

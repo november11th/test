@@ -12,7 +12,7 @@ const Information = styled.div`
   display: flex;
   align-items: center;
   height: 43px;
-  padding-left: 12px;
+  padding-left: 2px; /*12px*/
   margin-bottom: 16px;
 `;
 const StyledText = styled(Text)`

@@ -1,26 +1,21 @@
 import styled from "@emotion/styled";
-import IntroPuzzleLogo from "../components/intro/IntroPuzzleLogo";
-import IntroBanner from "../components/intro/IntroBanner";
-import { bannerSlideList } from "../temp_data/banner";
-import { Banner } from "../types/banner";
-import CardList from "../components/CardList";
-import { sampleDataList } from "../temp_data/data";
-import { CardData } from "../types/cardData";
-import InnerContainerBase from "../components/InnerContainerBase";
 import Head from "next/head";
 
-const Container = styled(InnerContainerBase)`
+import CardList from "../components/card/CardList";
+import InnerContainerBase from "../components/layout/InnerContainerBase";
+import ProjectJoinCard from "../components/intro/ProjectJoinCard";
+import IntroBanner from "../components/intro/IntroBanner";
+import { newBannerList } from "../temp_data/banner";
+import { Banner } from "../types/banner";
+import { CardData } from "../types/cardData";
+import { sampleDataList } from "../temp_data/data";
+
+export const Container = styled(InnerContainerBase)`
   margin-top: ${({ theme }) => theme.size.navBarHeight};
 `;
 
-const IntroWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 0px; /*24px;*/
-`;
-
 const DataListWrapper = styled.div`
-  padding-top: 40px;
+  padding-top: 169px;
   padding-bottom: 40px;
 `;
 
@@ -41,12 +36,9 @@ const Intro = ({ bannerList, dataList }: Props) => {
         />
       </Head>
       <Container>
-        <IntroWrapper>
-          <IntroPuzzleLogo />
-          <IntroBanner bannerList={bannerList} />
-        </IntroWrapper>
+        <IntroBanner bannerList={bannerList} />
         <DataListWrapper>
-          <CardList dataList={dataList} isMain />
+          <CardList dataList={dataList} />
         </DataListWrapper>
       </Container>
     </>
@@ -55,7 +47,7 @@ const Intro = ({ bannerList, dataList }: Props) => {
 
 export async function getStaticProps() {
   return {
-    props: { bannerList: bannerSlideList, dataList: sampleDataList },
+    props: { bannerList: newBannerList, dataList: sampleDataList },
   };
 }
 

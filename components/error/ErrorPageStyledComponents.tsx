@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import InnerContainerBase from "../InnerContainerBase";
+import InnerContainerBase from "../layout/InnerContainerBase";
 
 export const Container = styled(InnerContainerBase)`
   margin-top: ${({ theme }) => theme.size.navBarHeight};

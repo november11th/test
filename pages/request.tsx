@@ -6,9 +6,8 @@ import Partners from "../components/request/Partners";
 import RequestEmail from "../components/request/RequestEmail";
 import RequestProjectList from "../components/request/RequestProjectList";
 import RequestFloatingTab from "../components/request/RequestFloatingTab";
-import InnerContainerBase from "../components/InnerContainerBase";
+import InnerContainerBase from "../components/layout/InnerContainerBase";
 import { useNavBarTheme } from "../hooks/useNavBarTheme";
-import useNavBarThemeEffectWithScroll from "../hooks/useNavBarThemeEffectWithScroll";
 
 const InnerContainer = styled(InnerContainerBase)``;
 const Div = styled.div``;
