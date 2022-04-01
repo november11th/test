@@ -11,9 +11,13 @@ const TextContainer = styled.div`
   margin: 0px 0px 40px 0px;
 `;
 const Title = styled(Text)`
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 `;
-const Desc = styled(Text)``;
+const Desc = styled(Text)`
+  &.copy-case6 {
+    line-height: 1;
+  }
+`;
 
 interface Props {
   title: string;

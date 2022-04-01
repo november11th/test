@@ -6,7 +6,13 @@ import PlayController from "../common/PlayController";
 import Meta from "../common/Meta";
 import Footnote from "../common/Footnote";
 import ButtonSelector from "../common/ButtonSelector";
-import { HDAYINKOREAN, minuteToTime } from "../../../utils/common";
+import {
+  getFirstDayOfMonth,
+  getLastDayOfMonth,
+  getLastYyyymm,
+  HDAYINKOREAN,
+  minuteToTime,
+} from "../../../utils/common";
 
 const Container = styled.div`
   display: flex;
@@ -32,8 +38,9 @@ const StyledButtonSelector = styled(ButtonSelector)`
 
 interface Props {
   data: any;
+  footnoteHref?: string;
 }
-const HourlyHeat = ({ data }: Props) => {
+const HourlyHeat = ({ data, footnoteHref }: Props) => {
   const map = useRef<any>(null);
   const [value, setValue] = useState(0); //PlayController 분
   const [selectedHdayIdx, setSelectedHdayIdx] = useState<number>(0); //평일주말
@@ -65,12 +72,19 @@ const HourlyHeat = ({ data }: Props) => {
     map.current.createHeatmap(filteredData);
   }, [filteredData]);
 
+  // 전월 첫째날 ~ 전월 마지막날 날짜 기준
+  const lastMonth = getLastYyyymm(new Date());
+  const dataCriteria = `${getFirstDayOfMonth(
+    lastMonth,
+    "."
+  )} ~ ${getLastDayOfMonth(lastMonth, ".")}`;
+
   return (
     <Container>
       <Div>
         <Meta
-          title={`[서울특별시 강남구]의 ${HDAYINKOREAN[selectedHdayIdx]} 공유 킥보드 주 운행 위치`} /* 추후 수정 */
-          desc={`2022.02.01 ~ 2022.02.28 공유 킥보드 운행 추정 데이터 기준`} /* 추후 수정 직전달의 첫번째날부터 마지막날까지 */
+          title={`[${data.districtName}]의 ${HDAYINKOREAN[selectedHdayIdx]} 공유 킥보드 주 운행 위치`}
+          desc={`${dataCriteria} 공유 킥보드 운행 추정 데이터 기준`}
         />
         <StyledButtonSelector
           list={HDAYINKOREAN}
@@ -89,7 +103,7 @@ const HourlyHeat = ({ data }: Props) => {
         step={60}
         delay={1500}
       />
-      <Footnote href={"/data/공유킥보드?tabIndex=1"} />
+      <Footnote href={footnoteHref} />
     </Container>
   );
 };

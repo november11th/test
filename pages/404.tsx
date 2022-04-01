@@ -1,6 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
-import InnerContainerBase from "../components/layout/InnerContainerBase";
 import ErrorPagePanel from "../components/error/ErrorPagePanel";
 import Text from "../components/elements/Text";
 import ErrorPagePrevButton from "../components/error/ErrorPagePrevButton";

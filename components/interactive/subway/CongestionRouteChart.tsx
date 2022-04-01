@@ -11,7 +11,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { theme } from "../../../styles/theme";
 import { externalTooltipHandler } from "./CongestionRouteChartTooltip";
 import { CongestionRouteStat } from "../../../types/interactiveSubway";
 import { getCongestionLevelColor } from "../../../utils/interactiveSubway";

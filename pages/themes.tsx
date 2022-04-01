@@ -6,22 +6,20 @@ import { newSampleInsightList } from "../temp_data/insight";
 import ThemeFilter from "../components/themes/ThemeFilter";
 
 import useSWR from "swr";
-import CardListWithLabel from "../components/card/CardListWithLabel";
-import CardListWithLabelLoading from "../components/card/CardListWithLabelLoading";
 import { CardData } from "../types/cardData";
 import { timeout } from "../utils/common";
+import OuterContainerBase from "../components/layout/OuterContainerBase";
+import InsightTitleCardList from "../components/card/InsightTitleCardList";
+import PuzzleLoading from "../components/elements/loading/PuzzleLoading";
 
-const Container = styled(InnerContainerBase)`
-  margin-top: ${({ theme }) => theme.size.navBarHeight};
-`;
+const Container = OuterContainerBase;
+const Inside = InnerContainerBase;
 
 const SubtitleWrapper = styled.div`
-  padding-bottom: 133px;
+  padding-bottom: 44px;
 `;
 
-const CardListWrapper = styled.div`
-  margin-top: 106px;
-`;
+const CardListWrapper = styled.div``;
 
 interface Props {
   count: number;
@@ -51,22 +49,24 @@ const ThemePage = ({ count, themeList }: Props) => {
 
   return (
     <Container>
-      <SubtitleWrapper>
-        <Text type={"title"} scale={"3"}>
-          PUZZLE에서 {count}개의 인사이트를 만나보세요!
-        </Text>
-      </SubtitleWrapper>
-      <ThemeFilter themeList={themeList} handleSelect={handleSelect} />
-      <CardListWrapper>
-        {insightList ? (
-          <CardListWithLabel
-            label={{ text: "Insight", count: insightList.length }}
-            cardList={insightList as CardData[]}
-          />
-        ) : (
-          <CardListWithLabelLoading />
-        )}
-      </CardListWrapper>
+      <Inside>
+        <SubtitleWrapper>
+          <Text type={"title"} scale={"3"}>
+            PUZZLE에서 {count}개의 인사이트를 만나보세요!
+          </Text>
+        </SubtitleWrapper>
+        <ThemeFilter themeList={themeList} handleSelect={handleSelect} />
+        <CardListWrapper>
+          {insightList ? (
+            <InsightTitleCardList
+              cardList={insightList as CardData[]}
+              totalCardCount={insightList.length}
+            />
+          ) : (
+            <PuzzleLoading />
+          )}
+        </CardListWrapper>
+      </Inside>
     </Container>
   );
 };

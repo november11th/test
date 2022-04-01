@@ -9,6 +9,7 @@ import Partners from "../components/about/Partners";
 import { whatWeHaveList } from "../temp_data/about";
 import { theme } from "../styles/theme";
 import InnerContainerBase from "../components/layout/InnerContainerBase";
+import ScrollTopFloatingButton from "../components/elements/ScrollTopFloatingButton";
 
 export const Container = styled(InnerContainerBase)`
   margin-top: ${({ theme }) => theme.size.navBarHeight};
@@ -55,6 +56,7 @@ const About = () => {
       <TutorialVideo />
       <StyledAboutMenu itemList={whatWeHaveList} />
       <Partners />
+      <ScrollTopFloatingButton />
     </Container>
   );
 };

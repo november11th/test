@@ -254,7 +254,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_poi1.png`,
       title: "쇼핑/여가 장소 혼잡도",
       category: "체험형 인사이트",
-      isNew: false,
+      isNew: true,
       description: "쇼핑몰의 혼잡도를 알아보세요",
       tagList: ["이동", "혼잡도", "쇼핑"],
       cardType: "normal",
@@ -475,14 +475,14 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_travel1.png`,
       title: "여행지별 인기 방문 지역 및 체류 시간",
       category: "체험형 인사이트",
-      isNew: false,
+      isNew: true,
       description:
         "이번주에는 가족끼리 어디로 여행을 갈까? 인기 여행지를 알아보세요.",
       tagList: ["여행", "라이프스타일"],
       cardType: "normal",
       dataType: "insights",
       type: "interactive",
-      interactiveType: "travelPopularEmdRi",
+      interactiveType: "travelPopularEmdr",
       reportContent: null,
       displayName: "인기-여행지",
     },
@@ -491,7 +491,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_travel2.png`,
       title: "여행자 수 트렌드",
       category: "체험형 인사이트",
-      isNew: false,
+      isNew: true,
       description:
         "관심있는 여행지의 최근 2주간 여행자 수 트렌드를 알아보세요.",
       tagList: ["여행", "라이프스타일"],
@@ -507,7 +507,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_travel3.png`,
       title: "시도에 따른 1박2일 여행지 비교",
       category: "인사이트",
-      isNew: false,
+      isNew: true,
       description:
         "서울 출발 vs 경상남도 출발 1박2일 인기 여행지 Top 10 입니다.",
       tagList: ["여행", "라이프스타일"],
@@ -524,7 +524,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_travel4.png`,
       title: "아이와 함께 갈만한 여행장소",
       category: "인사이트",
-      isNew: false,
+      isNew: true,
       description:
         "제주도 제주시에서 아이와 여행할 때 특히 많이 방문하는 장소 Top10 입니다.",
       tagList: ["여행", "라이프스타일", "육아"],
@@ -543,7 +543,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_apt1.png`,
       title: "유사 아파트",
       category: "체험형 인사이트",
-      isNew: false,
+      isNew: true,
       description:
         "검색한 아파트와 유사한 라이프스타일을 가지고 있는 다른 아파트들을 알아보세요.",
       tagList: ["주거", "라이프스타일"],
@@ -559,7 +559,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_apt2.png`,
       title: "영유아 상위 비율 아파트",
       category: "인사이트",
-      isNew: false,
+      isNew: true,
       description: "영유아 비율이 상대적으로 높은 아파트 상위 10개입니다.",
       tagList: ["아파트", "라이프스타일", "이사", "주거"],
       cardType: "normal",
@@ -577,7 +577,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_kickboard1.png`,
       title: "공유 킥보드 주 운행 위치",
       category: "체험형 인사이트",
-      isNew: false,
+      isNew: true,
       description: "평일/주말별로 공유킥보드의 주요 운행 위치를 확인해보세요.",
       tagList: ["이동", "라이프스타일", "마이크로모빌리티"],
       cardType: "normal",
@@ -592,7 +592,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
       imgSrc: `/images/puzzle_card_kickboard2.png`,
       title: "공유킥보드 주요 승하차 장소",
       category: "체험형 인사이트",
-      isNew: false,
+      isNew: true,
       description: "공유킥보드를 가장 많이 타고, 내리는 위치를 확인해보세요.",
       tagList: ["이동", "라이프스타일", "마이크로모빌리티"],
       cardType: "normal",
@@ -606,6 +606,7 @@ export const newSampleInsightList: { [key: string]: any[] } = {
 };
 
 export const interactiveDescText: { [key: string]: InteractiveText } = {
+  /* 지하철 */
   subwayCongestionTrain: {
     desc: `검색한 역으로 진입하는 지하철의 혼잡도를 시간대별로 확인할 수 있습니다.\n(일부 역사의 경우, 검색이 제한될 수 있습니다.)`,
     placeholder: `역사명을 입력해주세요.`,
@@ -625,37 +626,53 @@ export const interactiveDescText: { [key: string]: InteractiveText } = {
     defaultOption: { title: "을지로입구" },
   },
 
+  /* 장소 */
   poiCongestionHourly: {
     desc: `장소별로 가장 혼잡한 요일과 시간대가 언제인지 확인해 보세요.\n통계성 장소 혼잡도는 검색한 장소가 요일별, 시간대별로 얼마나 혼잡한지 보여드립니다.\n혼잡도는 과거 1개월 간 가장 혼잡했던 때를 기준으로(100), 요일/시간대별 평균 혼잡도를 상대적으로 표현한 값입니다.\n아래 차트에서 요일을 바꿔가며 혼잡도를 확인해보세요.`,
     placeholder: `장소명을 입력해주세요.`,
-    footnoteHref: `/data/장소-혼잡도?tabIndex=1`,
+    footnoteHref: `/data/쇼핑,여가-장소-혼잡도?tabIndex=1`,
     defaultOption: { title: "스타필드하남", poiId: "5411247" },
   },
 
-  /**
-  travelPopularEmdRi: {
-    desc: `입력한 여행지 내에서 여행자수 기준 많이 방문하는 지역(동/리) Top5와 평균 방문 시간을 알 수 있습니다.`,
-    placeholder: `(시군구단위) 여행지를 입력해주세요.`,
-  },
-
-  travelTravelerDaily: {
-    desc: `검색한 여행지의 최근 2주간 일별 여행자 수와 총 국내 여행자 수 트렌드를 비교하여 볼 수 있습니다.\n(여행지는 시군구 단위로 검색이 가능합니다.)`,
-    placeholder: `(시군구단위) 여행지를 입력해주세요.`,
-  },
-
+  /* 주거생활 */
   aptSimilar: {
     desc: `검색한 아파트와 거주자 특징, 라이프스타일이 비슷한 상위 5개 아파트를 보여드립니다.\n지도 위에 표시된 아파트 목록과 아파트별 특징이 담긴 태그도 함께 확인해보세요.\n(모수 불충분 등으로 집계가 불가능한 일부 아파트의 경우 검색이 제한될 수 있습니다.)`,
     placeholder: `아파트를 입력해주세요.`,
+    footnoteHref: `/data/주거생활?tabIndex=1`,
+    defaultOption: { title: "송파동부센트레빌", id: "A13816101" },
   },
 
   kickboardHourlyHeat: {
-    desc: `검색한 지역구에서 공유 킥보드로 많이 이동한 위치를 보여드립니다.\n평일과 주말 각각 이용자들이 어디서 운행을 많이 하는지 확인해보세요.\n(공유 킥보드 운행 건이 충분히 확보되지 못한 지역구는 검색이 제한될 수 있습니다.)`,
+    desc: `검색한 지역구에서 공유 킥보드로 많이 이동한 위치를 보여드립니다.\n평일과 주말 각각 이용자들이 어디서 운행을 많이 하는지 확인해 보세요.\n(공유 킥보드 운행 건이 충분히 확보되지 못한 지역구는 검색이 제한될 수 있습니다.)`,
     placeholder: `지역구 명을 입력해주세요.`,
+    footnoteHref: `/data/공유킥보드-이용?tabIndex=1`,
+    defaultOption: { title: "서울특별시 종로구", sigCode: "1111000000" },
   },
 
   kickboardStartEndSpot: {
     desc: `검색한 지역구에서 공유 킥보드 이용자들이 가장 많이 승차 또는 하차하는 장소를 보여드립니다.\n(공유 킥보드 운행 건이 충분히 확보되지 못한 지역구는 검색이 제한될 수 있습니다.)`,
     placeholder: `지역구 명을 입력해주세요.`,
+    footnoteHref: `/data/공유킥보드-이용?tabIndex=1`,
+    defaultOption: { title: "서울특별시 종로구", sigCode: "1111000000" },
   },
-  */
+
+  travelPopularEmdr: {
+    desc: `입력한 여행지 내에서 여행자 수를 기준으로 많이 방문하는 지역(동/리) Top5와 평균 방문 시간을 알 수 있습니다.`,
+    placeholder: `(시군구단위) 여행지를 입력해주세요.`,
+    footnoteHref: `/data/국내-여행?tabIndex=1`,
+    defaultOption: {
+      title: "제주특별자치도 제주시",
+      districtCode: "5011000000",
+    },
+  },
+
+  travelTravelerDaily: {
+    desc: `검색한 여행지의 최근 2주간 일별 여행자 수와 총 국내 여행자 수 트렌드를 비교하여 볼 수 있습니다.\n(여행지는 시군구 단위로 검색이 가능합니다.)`,
+    placeholder: `(시군구단위) 여행지를 입력해주세요.`,
+    footnoteHref: `/data/국내-여행?tabIndex=1`,
+    defaultOption: {
+      title: "제주특별자치도 제주시",
+      districtCode: "5011000000",
+    },
+  },
 };

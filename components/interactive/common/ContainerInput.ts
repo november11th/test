@@ -5,7 +5,7 @@ const ContainerInput = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 120px;
+  margin-bottom: 50px;
 `;
 
 export default ContainerInput;

@@ -1,6 +1,5 @@
 import ReactDOMServer from "react-dom/server";
 import _ from "lodash";
-import { SetMealSharp } from "@mui/icons-material";
 
 class Map {
   map: any;

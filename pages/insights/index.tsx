@@ -5,14 +5,17 @@ import styled from "@emotion/styled";
 import { CardData } from "../../types/cardData";
 import ScrollTopFloatingButton from "../../components/elements/ScrollTopFloatingButton";
 import { newSampleInsightList } from "../../temp_data/insight";
-import CardListWithLabel from "../../components/card/CardListWithLabel";
+import InsightTitleCardList from "../../components/card/InsightTitleCardList";
+import OuterContainerBase from "../../components/layout/OuterContainerBase";
 
-const Container = styled(InnerContainerBase)`
-  margin-top: ${({ theme }) => theme.size.navBarHeight};
+const Container = OuterContainerBase;
+
+const Inside = styled(InnerContainerBase)`
+  padding-bottom: 160px;
 `;
 
 const SubtitleWrapper = styled.div`
-  padding-bottom: 133px;
+  padding-bottom: 44px;
 `;
 
 interface Props {
@@ -29,17 +32,17 @@ const InsightPage = ({ dataList, count }: Props) => {
 
   return (
     <Container>
-      <SubtitleWrapper>
-        <Text type={"title"} scale={"3"}>
-          PUZZLE에서 {count}개의 인사이트를 만나보세요!
-        </Text>
-      </SubtitleWrapper>
-      <CardListWithLabel
-        label={{ text: "Insight", count }}
-        cardList={insights}
-        fetchData={handleInfiniteScrollNext}
-      />
-
+      <Inside>
+        <SubtitleWrapper>
+          <Text type={"title"} scale={"3"}>
+            PUZZLE에서 {count}개의 인사이트를 만나보세요!
+          </Text>
+        </SubtitleWrapper>
+        <InsightTitleCardList
+          cardList={[...dataList, ...dataList]}
+          totalCardCount={dataList.length}
+        />
+      </Inside>
       <ScrollTopFloatingButton />
     </Container>
   );

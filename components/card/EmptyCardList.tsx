@@ -20,7 +20,7 @@ const Inside = styled.div`
 const Zero = styled.div`
   font-size: 288px;
 
-  color: ${({ theme }) => theme.colors.grayF4};
+  color: ${({ theme }) => theme.colors.grayAf};
   :before {
     content: "0";
   }

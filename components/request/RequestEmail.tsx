@@ -5,6 +5,7 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 import InnerContainerBase from "../layout/InnerContainerBase";
 import { theme } from "../../styles/theme";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const InnerContainer = styled(InnerContainerBase)``;
 const Container = styled.div`
@@ -28,9 +29,7 @@ const StyledButton = styled(Button)`
 `;
 
 const RequestEmail = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
+  useScrollToTop();
 
   const router = useRouter();
   const onPress = () => {

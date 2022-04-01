@@ -41,7 +41,7 @@ interface Props {
 const SimilarWindow = ({ data, index }: Props) => {
   const { name } = data;
   return (
-    <MapInfoWindow>
+    <MapInfoWindow key={index}>
       <Div>
         <MapInfoTag type={"ranking"} ranking={index + 1} />
         <Text type={"copy"} scale={"6"}>

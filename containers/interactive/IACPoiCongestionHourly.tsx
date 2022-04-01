@@ -1,5 +1,6 @@
 import { useState } from "react";
 import IAPoiCongestionHourly from "../../components/interactive/IAPoiCongestionHourly";
+import FailedToLoad from "../../components/interactive/common/FailedToLoad";
 import PuzzleLoading from "../../components/elements/loading/PuzzleLoading";
 import { useCongestionHourlyQuery } from "../../hooks/query/poi/useCongestionHourlyQuery";
 import { options } from "../../temp_data/interactivePoi";
@@ -17,7 +18,7 @@ const IACPoiCongestionHourly = () => {
     calledItem.poiId
   );
 
-  if (metaDataError || congestionDataError) return <div>Failed to load</div>;
+  if (metaDataError || congestionDataError) return <FailedToLoad />;
   if (!metaData || !congestionData) return <PuzzleLoading />;
 
   return (

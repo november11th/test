@@ -37,7 +37,7 @@ export default function useNavBarThemeEffectWithScroll({
     }
     return () => {
       if (ScrollTrigger.getById(id)) {
-        ScrollTrigger.getById(id).kill(true);
+        ScrollTrigger.getById(id)?.kill(true);
         setNavBarTheme("white");
       }
     };

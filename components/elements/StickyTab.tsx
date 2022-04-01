@@ -4,27 +4,14 @@ import Text from "../../components/elements/Text";
 import { theme } from "../../styles/theme";
 import { copyCurrentURL } from "../../utils/common";
 
-const Tab = styled.div`
+const Tab = styled.div<{ tab_color: string }>`
   position: sticky;
   top: 96px;
-  padding-top: 40px;
-  background-color: ${({ theme }) => theme.colors.white};
   z-index: 100;
   display: flex;
   justify-content: space-between;
-
-  /* 왼쪽에 StickyTab Buffer (검색컴포넌트 그림자 숨기기) */
-  &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0px;
-    transform: translateX(-30px);
-    width: 30px;
-    height: 100%;
-    background-color: ${({ theme }) => theme.colors.white};
-  }
+  padding-top: 16px;
+  background-color: ${({ tab_color }) => tab_color};
 
   &::before {
     content: "";
@@ -43,7 +30,32 @@ const Tab = styled.div`
     }
   }
 `;
-const Div = styled.div``;
+const Div = styled.div<{ backgroundColor: string }>`
+  /* 양쪽에 StickyTab Buffer (검색컴포넌트 그림자 숨기기) */
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    transform: translateX(-30px);
+    width: 30px;
+    height: 100%;
+    background-color: ${(props) => props.backgroundColor};
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    transform: translateX(30px);
+    width: 30px;
+    height: 100%;
+    background-color: ${(props) => props.backgroundColor};
+  }
+`;
 const TabAnchor = styled.button`
   color: ${({ theme }) => theme.colors.grayAf};
   background-color: ${({ theme }) => theme.colors.white};
@@ -102,22 +114,29 @@ const Share = styled.button`
 
 interface Props {
   tabList: string[];
+  tabColor: string;
   tabIndex: number;
   setTabIndex: Function;
   hasShare?: boolean;
   hasUnderline?: boolean; //false인 경우 하단의 회색 라인 없음
+  backgroundColor: string;
 }
 
 const StickyTab = ({
   tabList,
+  tabColor,
   tabIndex,
   setTabIndex,
   hasShare,
   hasUnderline,
+  backgroundColor,
 }: Props) => {
   return (
-    <Tab className={classNames({ noUnderline: !hasUnderline })}>
-      <Div>
+    <Tab
+      className={classNames({ noUnderline: !hasUnderline })}
+      tab_color={tabColor}
+    >
+      <Div backgroundColor={backgroundColor}>
         {tabList.map((item, i) => {
           return (
             <TabAnchor
@@ -154,11 +173,13 @@ const StickyTab = ({
 };
 
 StickyTab.defaultProps = {
+  tabColor: theme.colors.white,
   tabList: [],
   tabIndex: 0,
   setTabIndex: () => {},
   hasShare: false,
   hasUnderline: true,
+  backgroundColor: theme.colors.white,
 };
 
 export default StickyTab;

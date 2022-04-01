@@ -24,10 +24,10 @@ const MapContainer = styled.div`
   height: 300px;
   position: absolute;
   right: 0px;
-  top: -170px;
+  top: -105px;
 `;
 const StyledMeta = styled(Meta)`
-  margin-top: 220px;
+  margin-top: 250px;
 `;
 const StyledButtonSelector = styled(ButtonSelector)`
   display: flex;

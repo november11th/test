@@ -1,16 +1,17 @@
 import React from "react";
-import IATravelPopularEmdRi from "../../components/interactive/IATravelPopularEmdRi";
-import IAAptSimilar from "../../components/interactive/IAAptSimilar";
-import IAKickboardHourlyHeat from "../../components/interactive/IAKickboardHourlyHeat";
-import IAKickboardStartEndSpot from "../../components/interactive/IAKickboardStartEndSpot";
-import IATravelTravelerDaily from "../../components/interactive/IATravelTravelerDaily";
+import IACTravelPopularEmdr from "./IACTravelPopularEmdr";
 import IACSubwayCongestionTrain from "./IACSubwayCongestionTrain";
 import IACSubwayCongestionCar from "./IACSubwayCongestionCar";
 import IACSubwayCongestionRoute from "./IACSubwayCongestionRoute";
 import IACPoiCongestionHourly from "./IACPoiCongestionHourly";
+import IACAptSimilar from "./IACAptSimilar";
+import IACKickboardHourlyHeat from "./IACKickboardHourlyHeat";
+import IACKickboardStartEndSpot from "./IACKickboardStartEndSpot";
+import IACTravelTravelerDaily from "./IACTravelTravelerDaily";
+import { InteractiveType } from "../../types/insight";
 
 interface Props {
-  id: string;
+  id: InteractiveType;
 }
 const InteractiveContainer = ({ id }: Props) => {
   switch (id) {
@@ -28,19 +29,19 @@ const InteractiveContainer = ({ id }: Props) => {
 
     /* 주거생활 */
     case "aptSimilar":
-      return <IAAptSimilar />;
+      return <IACAptSimilar />;
 
     /* 여행 */
-    case "travelPopularEmdRi":
-      return <IATravelPopularEmdRi />;
+    case "travelPopularEmdr":
+      return <IACTravelPopularEmdr />;
     case "travelTravelerDaily":
-      return <IATravelTravelerDaily />;
+      return <IACTravelTravelerDaily />;
 
     /* 킥보드 */
     case "kickboardHourlyHeat":
-      return <IAKickboardHourlyHeat />;
+      return <IACKickboardHourlyHeat />;
     case "kickboardStartEndSpot":
-      return <IAKickboardStartEndSpot />;
+      return <IACKickboardStartEndSpot />;
 
     /* 예외 */
     default:

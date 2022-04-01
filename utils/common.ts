@@ -1,16 +1,10 @@
-// 현재 URL을 클립보드에 복사하고 알림
-import { SITE_TITLE } from "../assets/common_texts";
-
-export const BASE_URL = "https://app.data-puzzle.com";
-// export const BASE_URL =
-// "http://alb-diaas-pzl-dev-1196007480.ap-northeast-2.elb.amazonaws.com:3000";
-
 export const DOWINENGLISH = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 export const DOWINKOREAN = ["월", "화", "수", "목", "금", "토", "일"];
 export const HDAYINBOOLEAN = [false, true];
 export const HDAYINKOREAN = ["평일", "주말"];
 export const RIDETYPEINKOREAN = ["승차", "하차"];
 
+// 현재 URL을 클립보드에 복사하고 알림
 export const copyCurrentURL = () => {
   let currentUrl = window.document.location.href;
   let t = document.createElement("textarea");
@@ -23,15 +17,6 @@ export const copyCurrentURL = () => {
   alert("링크가 복사되었습니다.");
 };
 
-export const getPageTitle = (
-  contentTitle?: string,
-  siteTitle: string = SITE_TITLE
-) => {
-  if (contentTitle && contentTitle.length > 0)
-    return `${contentTitle} | ${siteTitle}`;
-  else return siteTitle;
-};
-
 // #시니어#수서역 => ['시니어', '수서역']
 export const getHashtagArray = (text: string) => {
   const array = text.split("#");
@@ -39,7 +24,15 @@ export const getHashtagArray = (text: string) => {
   return array;
 };
 
+export function timeout(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 /* --------- 시간/날짜 함수 --------- */
+
+const makeCalendarNum = (item: number | string) => {
+  return (Number(item) > 9 ? "" : "0") + item.toString();
+};
 
 // 20210309 -> 2021, 3, 9
 export const getYmd = (dt: string | number) => {
@@ -150,11 +143,15 @@ export const secondToDuration = (second: number, format?: string) => {
 };
 
 // yyyymmdd 2일 전 -> yyyy.mm.dd
-export const addDate = (dt: string | number, days: number) => {
+export const addDate = (
+  dt: string | number,
+  days: number,
+  split: string = "."
+) => {
   const result = new Date(getYmd(dt).yyyy, getYmd(dt).mm - 1, getYmd(dt).dd);
   result.setDate(result.getDate() + days);
 
-  return getYyyymmdd(result, ".");
+  return getYyyymmdd(result, split);
 };
 
 // new Date() => yyyymmdd
@@ -163,13 +160,41 @@ export const getYyyymmdd = (date: Date, split: string = "") => {
   const month = 1 + date.getMonth();
   const day = date.getDate();
 
-  return [
-    year,
-    (month > 9 ? "" : "0") + month,
-    (day > 9 ? "" : "0") + day,
-  ].join(split);
+  return [year, makeCalendarNum(month), makeCalendarNum(day)].join(split);
 };
 
-export function timeout(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+// 전월 => yyyymm
+export const getLastYyyymm = (date: Date, split: string = "") => {
+  const year = date.getFullYear();
+  const month = date.getMonth(); // 1을 더하지 않음
+
+  return [year, makeCalendarNum(month)].join(split);
+};
+
+// 현월 => yyyymm
+export const getPresentYyyymm = (date: Date, split: string = "") => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // 1을 더함
+
+  return [year, makeCalendarNum(month)].join(split);
+};
+
+// 달의 첫번째 날짜 2022.02.01
+export const getFirstDayOfMonth = (yyyymm: string, split: string = "") => {
+  const yyyy = yyyymm.substr(0, 4);
+  const mm = yyyymm.substr(4, 2);
+
+  return [yyyy, mm, "01"].join(split);
+};
+
+// 달의 마지막 날짜 2022.02.28
+export const getLastDayOfMonth = (yyyymm: string, split: string = "") => {
+  const yyyy = yyyymm.substr(0, 4);
+  const mm = yyyymm.substr(5, 2);
+
+  const yyyyNew = mm === "12" ? String(yyyy + 1) : yyyy;
+  const mmNew = mm === "12" ? "01" : makeCalendarNum(Number(mm) + 1);
+  const nextMonthFirstDay = [yyyyNew, mmNew, "01"].join("");
+
+  return addDate(nextMonthFirstDay, -1, split);
+};

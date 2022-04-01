@@ -1,33 +1,35 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import InnerContainerBase from "../../components/layout/InnerContainerBase";
-import { sampleDataList } from "../../temp_data/data";
-import StickyTab from "../../components/elements/StickyTab";
-import TabPanel from "../../components/elements/TabPanel";
-import CardListWithLabel from "../../components/card/CardListWithLabel";
-import { CardData } from "../../types/cardData";
-import { sampleDataDescription } from "../../temp_data/data_description";
-import PuzzleMarkdown from "../../components/elements/PuzzleMarkdown";
-import { useSetNavBarTheme } from "../../hooks/useNavBarTheme";
-import useNavBarThemeEffectWithScroll from "../../hooks/useNavBarThemeEffectWithScroll";
-import DetailPageHeader from "../../components/layout/DetailPageHeader";
-import DetailPageContainerBase from "../../components/layout/DetailPageContainerBase";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import Head from "next/head";
-import { getPageTitle } from "../../utils/common";
-import { newSampleInsightList } from "../../temp_data/insight";
+import { NextSeo } from "next-seo";
+import InnerContainerBase from "../../components/layout/InnerContainerBase";
 import PuzzleLoading from "../../components/elements/loading/PuzzleLoading";
+import StickyTab from "../../components/elements/StickyTab";
+import TabPanel from "../../components/elements/TabPanel";
+import PuzzleMarkdown from "../../components/elements/PuzzleMarkdown";
+import DataDetailPageHeader from "../../components/layout/DataDetailPageHeader";
+import { CardData } from "../../types/cardData";
+import { useSetNavBarTheme } from "../../hooks/useNavBarTheme";
+import useNavBarThemeEffectWithScroll from "../../hooks/useNavBarThemeEffectWithScroll";
+import { sampleDataList } from "../../temp_data/data";
+import { newSampleInsightList } from "../../temp_data/insight";
+import { sampleDataDescription } from "../../temp_data/data_description";
+import InsightTitleCardList from "../../components/card/InsightTitleCardList";
+import { theme } from "../../styles/theme";
+import useScrollToTop from "../../hooks/useScrollToTop";
+import ScrollTopFloatingButton from "../../components/elements/ScrollTopFloatingButton";
 
-const Container = DetailPageContainerBase;
-
+const Container = styled.div`
+  background-color: ${({ theme }) => theme.colors.cardListBackground};
+  min-width: max-content;
+`;
+const Header = styled.header``;
 const Inner = styled(InnerContainerBase)``;
-
 const TabInside = styled.div`
   padding-top: 56px;
 `;
-
 const PuzzleMarkdownTabInside = styled(TabInside)`
   width: 900px;
 `;
@@ -39,6 +41,7 @@ interface Props {
   partner: string;
   insightList: CardData[];
   detailDescription: string;
+  backgroundImageUrl: string;
 }
 
 const DataPage = ({
@@ -48,6 +51,7 @@ const DataPage = ({
   partner,
   insightList,
   detailDescription,
+  backgroundImageUrl,
 }: Props) => {
   const [tabIndex, setTabIndex] = useState<number>(0);
   const ref = useRef<any>(null);
@@ -62,14 +66,15 @@ const DataPage = ({
     setTabIndex(0);
   }, [query?.displayName]);
 
+  useScrollToTop(tabIndex);
   useSetNavBarTheme(isFallback ? "white" : "black", [isFallback]);
 
   useNavBarThemeEffectWithScroll({
     id: "data-scroll",
     trigger: ref.current,
-    start: "top 96px",
+    start: "bottom 50px",
     end: "bottom bottom",
-    onEnterColor: "white",
+    onEnterColor: "gray",
     onLeaveBackColor: "black",
   });
 
@@ -77,30 +82,32 @@ const DataPage = ({
 
   return (
     <>
-      <Head>
-        <title>{getPageTitle(title)}</title>
-        <meta property="og:title" content={title} />
-        <meta name="twitter:title" content={title} />
-      </Head>
-      <Container ref={ref}>
-        <DetailPageHeader
-          tagList={tagList}
-          title={title}
-          description={description}
-          partner={partner}
-        />
+      <NextSeo title={title} description={description} />
+
+      <Container>
+        <Header ref={ref}>
+          <DataDetailPageHeader
+            imgUrl={backgroundImageUrl}
+            tagList={tagList}
+            title={title}
+            description={description}
+            partner={partner}
+          />
+        </Header>
 
         <Inner>
           <StickyTab
+            backgroundColor={theme.colors.cardListBackground}
+            tabColor={theme.colors.cardListBackground}
             tabList={["인사이트", "데이터 설명"]}
             tabIndex={tabIndex}
             setTabIndex={setTabIndex}
           />
           <TabPanel value={tabIndex} index={0}>
             <TabInside data-testid={"tab-panel-insight-list"}>
-              <CardListWithLabel
-                label={{ text: "Insight", count: insightList.length }}
+              <InsightTitleCardList
                 cardList={insightList}
+                totalCardCount={insightList.length}
               />
             </TabInside>
           </TabPanel>
@@ -110,6 +117,7 @@ const DataPage = ({
             </PuzzleMarkdownTabInside>
           </TabPanel>
         </Inner>
+        <ScrollTopFloatingButton />
       </Container>
     </>
   );
@@ -150,6 +158,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         partner: foundItem?.partner ?? "SKTelecom",
         insightList: newSampleInsightList[displayName] ?? [],
         detailDescription: sampleDataDescription[displayName],
+        backgroundImageUrl: foundItem?.backgroundImageUrl,
       },
     };
   } catch (e) {

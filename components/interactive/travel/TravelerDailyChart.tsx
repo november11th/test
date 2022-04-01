@@ -49,6 +49,7 @@ const TravelerDailyChart = ({ data }: Props) => {
         borderColor: theme.colors.chart67,
         backgroundColor: theme.colors.chart67,
         borderRadius: 10,
+        barThickness: 20,
         hoverBackgroundColor: theme.colors.chart0C,
         yAxisID: "y",
         /* for tooltip */
@@ -128,6 +129,9 @@ const TravelerDailyChart = ({ data }: Props) => {
           font: {
             size: 15,
           },
+          padding: {
+            bottom: 20,
+          },
         },
         grid: {
           drawOnChartArea: false,
@@ -135,6 +139,9 @@ const TravelerDailyChart = ({ data }: Props) => {
         ticks: {
           font: {
             size: 14,
+          },
+          callback: function (value: any) {
+            return value + "만";
           },
         },
       },
@@ -145,9 +152,12 @@ const TravelerDailyChart = ({ data }: Props) => {
         suggestedMin: 0,
         suggestedMax: 100,
         ticks: {
-          stepSize: 25,
+          stepSize: 100000,
           font: {
             size: 14,
+          },
+          callback: function (value: any) {
+            return value + "만";
           },
         },
         title: {
@@ -155,6 +165,9 @@ const TravelerDailyChart = ({ data }: Props) => {
           text: "국내 여행자 수",
           font: {
             size: 15,
+          },
+          padding: {
+            bottom: 20,
           },
         },
       },

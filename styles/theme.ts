@@ -24,6 +24,7 @@ export const theme = {
     gray70: "#707070",
     gray97: "#979797",
     gray8b: "#8b8b8b",
+    gray33: "#333333",
     pointFc: "#fccd7b",
     pointF7: "#f7ba4f",
     point70: "#70bfa1",
@@ -66,5 +67,7 @@ export const theme = {
     bannerBG04: "rgba(96,217,141,0.8)",
 
     menuCatalogHeader: "#A7A7A7",
+
+    cardListBackground: "#F6F6F6",
   },
 };

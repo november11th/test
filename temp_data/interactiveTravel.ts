@@ -36,7 +36,7 @@ export const travelerDailyData = {
   },
 };
 
-export const popularEmdRiData = {
+export const popularEmdrData = {
   sigName: "종로구",
   ctpName: "서울특별시",
   districtCode: "1111016600",

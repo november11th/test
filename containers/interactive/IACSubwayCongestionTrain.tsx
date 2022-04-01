@@ -1,6 +1,7 @@
 import { useState } from "react";
 import IASubwayCongestionTrain from "../../components/interactive/IASubwayCongestionTrain";
 import PuzzleLoading from "../../components/elements/loading/PuzzleLoading";
+import FailedToLoad from "../../components/interactive/common/FailedToLoad";
 import { useCongestionTrainQuery } from "../../hooks/query/subway/useCongestionTrainQuery";
 import { useOptionsQuery } from "../../hooks/query/subway/useOptionsQuery";
 import { interactiveDescText } from "../../temp_data/insight";
@@ -13,7 +14,7 @@ const IACSubwayCongestionTrain = () => {
   const { data, error: dataError } = useCongestionTrainQuery(calledItem.title);
   const { options, error: optionsError } = useOptionsQuery();
 
-  if (dataError || optionsError) return <div>Failed to load</div>;
+  if (dataError || optionsError) return <FailedToLoad />;
   if (!data || !options) return <PuzzleLoading />;
 
   return (

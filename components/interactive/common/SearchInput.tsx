@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import Text from "../../elements/Text";
-import _debounce from "lodash/debounce";
-import _ from "lodash";
 import { SearchItem } from "../../../types/common";
 
 export const Container = styled.div`

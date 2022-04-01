@@ -121,14 +121,18 @@ const PuzzleMarkdown = ({ text }: Props) => {
         h3: (props) => <H3 {...props} />,
         h4: (props) => <H4 {...props} />,
         h5: (props) => (
-          <Title type={"copy"} scale={"3"}>
-            {props.children}
-          </Title>
+          <div style={{ marginTop: "50px" }}>
+            <Title type={"copy"} scale={"3"}>
+              {props.children}
+            </Title>
+          </div>
         ),
         h6: (props) => (
-          <Text type={"copy"} scale={"6"} color={theme.colors.gray8b}>
-            {props.children}
-          </Text>
+          <div style={{ marginTop: "15px", marginBottom: "50px" }}>
+            <Text type={"copy"} scale={"6"} color={theme.colors.gray8b}>
+              {props.children}
+            </Text>
+          </div>
         ),
         li: (props) => <Li {...props} />,
         table: (props) => <Table {...props} />,

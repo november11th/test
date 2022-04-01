@@ -6,7 +6,6 @@ import SvgIconClose from "../../../assets/images/layout/style-btn-close.svg";
 import { NavBarTheme } from "../../../types/common";
 import { theme } from "../../../styles/theme";
 import SvgIconSearchWhite from "../../../assets/images/layout/gnb-icon-search-white.svg";
-import Link from "next/link";
 
 const SearchButton = styled.div`
   cursor: pointer;
@@ -107,7 +106,7 @@ const SearchInputText = styled.input<{
   letter-spacing: normal;
 
   color: ${({ theme, navbar_theme }) =>
-    navbar_theme === "white" ? theme.colors.black : theme.colors.white};
+    navbar_theme === "black" ? theme.colors.white : theme.colors.black};
 
   &:-webkit-autofill {
     -webkit-background-clip: text;
@@ -158,6 +157,12 @@ const NavbarSearchInput = ({ navBarTheme }: Props) => {
       close: JSX.Element;
     };
   } = {
+    gray: {
+      color: theme.colors.black,
+      backgroundColor: theme.colors.white,
+      search: <SvgIconSearchBlack />,
+      close: <SvgIconClose />,
+    },
     white: {
       color: theme.colors.black,
       backgroundColor: theme.colors.white,
@@ -203,14 +208,14 @@ const NavbarSearchInput = ({ navBarTheme }: Props) => {
         />
 
         <SearchButton
-          className={navBarTheme === "white" ? "white-theme" : "black-theme"}
+          className={navBarTheme === "black" ? "black-theme" : "white-theme"}
           onClick={handleSearchClick}
         >
           {navBarStyle[navBarTheme].search}
         </SearchButton>
 
         <CloseButton
-          className={navBarTheme === "white" ? "white-theme" : "black-theme"}
+          className={navBarTheme === "black" ? "black-theme" : "white-theme"}
           onClick={() => {
             setIsSearchMode(false);
             setSearchText("");
@@ -222,7 +227,7 @@ const NavbarSearchInput = ({ navBarTheme }: Props) => {
 
       <OpenSearchButtonWrapper is_search_mode={isSearchMode}>
         <SearchButton
-          className={navBarTheme === "white" ? "white-theme" : "black-theme"}
+          className={navBarTheme === "black" ? "black-theme" : "white-theme"}
           onClick={() => {
             setIsSearchMode(true);
           }}

@@ -5,7 +5,6 @@ import styled from "@emotion/styled";
 import { useIsOpenMenuState } from "../../recoil/menuDialog";
 
 const Container = styled.div<{ scrollYDisabled: boolean }>`
-  padding-bottom: ${({ theme }) => theme.size.layoutBottomPadding};
   height: ${({ scrollYDisabled }) => (scrollYDisabled ? "100vh" : "")};
   overflow-y: ${({ scrollYDisabled }) =>
     scrollYDisabled ? "hidden" : "unset"};

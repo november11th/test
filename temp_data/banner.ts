@@ -1,44 +1,32 @@
 import { Banner } from "../types/banner";
-import { imageBaseUrl } from "./insight";
 
-export const newBannerList = [
+export const TEMP_BANNER_LIST: Banner[] = [
   {
-    category: null,
-    title: `PUZZLE은 
-    SK텔레콤의 위치데이터를 기반으로
-    사람들의 거주/이동/체류에 대한
-    다양한 인사이트를 제공하는 
-    데이터 서비스입니다`,
-    description: `데이터는 어렵다? 
-            PUZZLE은 어렵게만 느껴졌던 '데이터'를 기반으로 
-            생활에 유용한 정보를 제공합니다
-            `,
-    buttonTitle: "서비스 소개 보기",
+    imageUrl: "/images/banner_image01.png",
+    title:
+      "PUZZLE은\n" +
+      "인구 이동과 체류에 관련된 데이터를 모아놓은 SK텔레콤의 인사이트 매거진 입니다.",
+    description:
+      "Lörem ipsum denera homoröska liksom orafyning för inigon. Trepp okrode dungen benade julig. Mobilroman myst. Autorat polygen. Supras fyroning. Didat ure. Vanårade polalig antenilig nilavis.polalig antenilig nilavis. ...",
+    buttonTitle: "서비스 소개",
     link: "/about",
-    imageUrl: "/temp/puzzle_banner_logo.png",
   },
   {
-    category: "신규 데이터",
-    title: `내가 매일 타는 지하철의 
-            혼잡도를 알고싶다면?`,
-    description: `지하철 혼잡도는 
-                국토교통부의 지하철 혼잡도 기준을 따르고 있으며,
-                한 칸의 승객 수가 160명일 때를 
-                100%로 환산하여 제공됩니다`,
-    buttonTitle: "자세히 보기",
+    imageUrl: "/images/banner_image02.png",
+    title: "지하철 혼잡도에서는\n 지하철 내 인구의 군집 현상을 설명합니다.",
+    description:
+      "각 열차별 혼잡도를 4단계로 표현하며, 통계성 데이터와 실시간 데이터 모두 제공합니다igon. Trepp okrode dungen benade julig. Mobilroman myst. Autorat polygen. Supras fyroning. Didat ure. Vanårade polalig nilavisnilavisnilavisnilavisnilavis. ...",
+    buttonTitle: "지하철 혼잡도 보기",
     link: "/data/지하철-혼잡도",
-    imageUrl: "/temp/kv-banner-01.png",
   },
   {
-    category: "신규 데이터",
-    title: `특정 아파트에 
-            거주하는 거주민은 어떤 학원을 보낼까?`,
-    description: `주거생활 데이터는 
-              SK텔레콤의 가족 결합 데이터, 인터넷 설치 이전 신청 
-              및 우편물 주소 데이터, 콜데이터(CDR), 기지국 데이터 등과 
-              국토교통부의 공동주택 데이터를 결합하여 집계되었습니다`,
-    buttonTitle: "자세히 보기",
-    link: "/data/주거생활",
-    imageUrl: "/temp/kv-banner-02.png",
+    imageUrl: "/images/banner_image03.png",
+    title:
+      "데이터 요청하기를 통해\n" +
+      "새로운 인구 군집/이동/체류와 관련된 내용을 요청해주세요.",
+    description:
+      "SK텔레콤의 통신데이터를 활용하면 다양한 형태의 인구 군집/이동/체류 현상을 설명할 수 있습니다. 추가적인 문의가 있으시다면 배너 하단 또는 왼쪽 상단의 ‘데이터 요청하기' 버튼을 통해 저희쪽으로 요청하실 수 있습니다.",
+    buttonTitle: "데이터 요청하기",
+    link: "/request",
   },
 ];

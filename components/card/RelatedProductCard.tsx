@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
 import Text from "../../components/elements/Text";
 import { RelatedProduct } from "../../types/relatedProduct";
 

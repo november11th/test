@@ -96,7 +96,7 @@ const RequestProcedure = ({ onButtonPress }: Props) => {
     }
 
     return () => {
-      ScrollTrigger.getById("request-procedure").kill(true);
+      ScrollTrigger.getById("request-procedure")?.kill(true);
     };
   }, []);
 

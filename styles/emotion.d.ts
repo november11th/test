@@ -27,6 +27,7 @@ declare module "@emotion/react" {
       gray70: string;
       gray97: string;
       gray8b: string;
+      gray33: string;
       pointFc: string;
       pointF7: string;
       point70: string;
@@ -69,6 +70,8 @@ declare module "@emotion/react" {
       bannerBG04: string;
 
       menuCatalogHeader: string;
+
+      cardListBackground: string;
     };
   }
 }

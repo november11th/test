@@ -1,8 +1,7 @@
 export interface Banner {
-  category?: string;
+  imageUrl: string;
   title: string;
   description: string;
   buttonTitle: string;
   link: string;
-  imageUrl: string;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Text from "../../elements/Text";
 import Link from "next/link";
 
 const MenuItemWrapper = styled.div`

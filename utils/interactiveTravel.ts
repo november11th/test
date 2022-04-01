@@ -1,5 +1,5 @@
 /* 지역명 */
-export const makeEmdRiName = (emdName: string, riName: string) => {
+export const makeEmdrName = (emdName: string, riName: string) => {
   return riName === "" ? emdName : `${emdName} ${riName}`;
 };
 

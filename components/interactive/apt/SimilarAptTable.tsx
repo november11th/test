@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
+import { AptMeta, Option } from "../../../types/interactiveApt";
 
 const TableContainer = styled.div``;
 const TableHead = styled.div`
@@ -40,13 +41,18 @@ const TableBody = styled.div`
 `;
 const TableCell = styled.div`
   padding-left: 20px;
+
+  &.clickable {
+    cursor: pointer;
+  }
 `;
 
 interface Props {
-  data: any[] | null;
+  data: AptMeta[];
   className?: string;
+  onTablePress: (item: Option) => void;
 }
-const PopularEmdRiTable = ({ data, className }: Props) => {
+const SimilarAptTable = ({ data, className, onTablePress }: Props) => {
   const columns = ["순위", "아파트명", "세대수", "주소"];
 
   return (
@@ -64,8 +70,13 @@ const PopularEmdRiTable = ({ data, className }: Props) => {
             key={index}
           >
             <TableCell>{index === 0 ? `기준` : `${index}위`}</TableCell>
-            <TableCell>{row.name}</TableCell>
-            <TableCell>{row.householdsCount}세대</TableCell>
+            <TableCell
+              className={"clickable"}
+              onClick={() => onTablePress({ title: row.name, id: row.id })}
+            >
+              {row.name}
+            </TableCell>
+            <TableCell>{row.householdsCount.toLocaleString()}세대</TableCell>
             <TableCell>{row.addr}</TableCell>
           </TableBody>
         ))}
@@ -73,4 +84,4 @@ const PopularEmdRiTable = ({ data, className }: Props) => {
   );
 };
 
-export default PopularEmdRiTable;
+export default SimilarAptTable;

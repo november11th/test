@@ -1,30 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
+import axios from "axios";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { ParsedUrlQuery } from "querystring";
+import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 import StickyTab from "../../components/elements/StickyTab";
 import InnerContainerBase from "../../components/layout/InnerContainerBase";
 import RelatedProductCard from "../../components/card/RelatedProductCard";
+import InsightDetailPageHeader from "../../components/layout/InsightDetailPageHeader";
+import PuzzleMarkdown from "../../components/elements/PuzzleMarkdown";
+import PuzzleLoading from "../../components/elements/loading/PuzzleLoading";
+import InteractiveContainer from "../../containers/interactive/InteractiveContainer";
+import { Insight } from "../../types/insight";
+import { useSetNavBarTheme } from "../../hooks/useNavBarTheme";
+import { sampleDataList } from "../../temp_data/data";
 import {
   newSampleInsightList,
   sampleRelatedProduct,
 } from "../../temp_data/insight";
-import { useSetNavBarTheme } from "../../hooks/useNavBarTheme";
-import useNavBarThemeEffectWithScroll from "../../hooks/useNavBarThemeEffectWithScroll";
-import DetailPageHeader from "../../components/layout/DetailPageHeader";
-import DetailPageContainerBase from "../../components/layout/DetailPageContainerBase";
-import { Insight } from "../../types/insight";
-import PuzzleMarkdown from "../../components/elements/PuzzleMarkdown";
-import Head from "next/head";
-import { getPageTitle } from "../../utils/common";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { ParsedUrlQuery } from "querystring";
-import { useRouter } from "next/router";
-import PuzzleLoading from "../../components/elements/loading/PuzzleLoading";
-import InteractiveContainer from "../../containers/interactive/InteractiveContainer";
-import axios from "axios";
-import { sampleDataList } from "../../temp_data/data";
+import useScrollToTop from "../../hooks/useScrollToTop";
+import ScrollTopFloatingButton from "../../components/elements/ScrollTopFloatingButton";
 
-const Container = DetailPageContainerBase;
-const Wrapper = styled.section``;
+const Container = styled.div``;
 const Grid = styled(InnerContainerBase)`
   display: grid;
 `;
@@ -63,67 +61,52 @@ const InsightDetailPage = ({
   reportContent = "",
   interactiveType,
   category = "",
-  backgroundImageUrl = "/images/data_detail_bg_travel.svg",
+  description = "",
 }: Props) => {
   const [tabIndex, setTabIndex] = useState<number>(0);
-  const ref = useRef<any>(null);
   const { isFallback } = useRouter();
-
-  useSetNavBarTheme(isFallback ? "white" : "black", [isFallback]);
-
-  useNavBarThemeEffectWithScroll({
-    id: "insights-scroll",
-    trigger: ref.current,
-    start: "top 96px",
-    end: "bottom bottom",
-    onEnterColor: "white",
-    onLeaveBackColor: "black",
-  });
+  useSetNavBarTheme("white");
+  useScrollToTop(tabIndex);
 
   if (isFallback) return <PuzzleLoading />;
 
   return (
     <>
-      <Head>
-        <title>{getPageTitle(title)}</title>
-        <meta property="og:title" content={title} />
-        <meta name="twitter:title" content={title} />
-      </Head>
-      <Container ref={ref}>
-        <Wrapper>
-          <DetailPageHeader
-            tagList={tagList}
-            title={title}
-            partner={partner}
-            imgUrl={backgroundImageUrl}
-            category={category}
-          />
-          <Grid>
-            <InsightWrapper>
-              <StickyTab
-                tabList={type === "report" ? ["서비스 소개"] : ["인사이트"]}
-                tabIndex={tabIndex}
-                setTabIndex={setTabIndex}
-                hasShare={true}
-              />
-              <Body>
-                {type === "report" ? (
-                  <PuzzleMarkdown text={reportContent} />
-                ) : (
-                  <InteractiveContainer id={interactiveType ?? ""} />
-                )}
-              </Body>
-            </InsightWrapper>
-            <ProductList>
-              <StickyTab tabList={["연관 데이터 상품"]} hasUnderline={false} />
-              <RelatedProducts>
-                {sampleRelatedProduct.map((item, index) => (
-                  <StyledRelatedProductCard key={index} data={item} />
-                ))}
-              </RelatedProducts>
-            </ProductList>
-          </Grid>
-        </Wrapper>
+      <NextSeo title={title} description={description} />
+
+      <Container>
+        <InsightDetailPageHeader
+          category={category}
+          tagList={tagList}
+          title={title}
+          partner={partner}
+        />
+        <Grid>
+          <InsightWrapper>
+            <StickyTab
+              tabList={type === "report" ? ["서비스 소개"] : ["인사이트"]}
+              tabIndex={tabIndex}
+              setTabIndex={setTabIndex}
+              hasShare={true}
+            />
+            <Body>
+              {type === "report" ? (
+                <PuzzleMarkdown text={reportContent} />
+              ) : (
+                <InteractiveContainer id={interactiveType ?? ""} />
+              )}
+            </Body>
+          </InsightWrapper>
+          <ProductList>
+            <StickyTab tabList={["연관 데이터 상품"]} hasUnderline={false} />
+            <RelatedProducts>
+              {sampleRelatedProduct.map((item, index) => (
+                <StyledRelatedProductCard key={index} data={item} />
+              ))}
+            </RelatedProducts>
+          </ProductList>
+        </Grid>
+        <ScrollTopFloatingButton />
       </Container>
     </>
   );
@@ -210,6 +193,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         interactiveType: foundItem?.interactiveType ?? null,
         category: foundItem.category,
         backgroundImageUrl,
+        description: foundItem.description,
       },
     };
   } catch (e) {

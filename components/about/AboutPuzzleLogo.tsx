@@ -5,10 +5,6 @@ import ShapeTextU from "../../assets/images/common/img-shape-U.svg";
 import ShapeTextZ from "../../assets/images/common/img-shape-Z.svg";
 import ShapeTextL from "../../assets/images/common/img-shape-L.svg";
 import ShapeTextE from "../../assets/images/common/img-shape-E.svg";
-import {
-  GridContainer as GridContainer_,
-  GridItem as GridItem_,
-} from "../intro/IntroPuzzleLogo";
 
 const Container = styled.div`
   position: relative;
@@ -18,14 +14,32 @@ const Inside = styled.div`
   width: 100%;
   height: 100%;
 `;
-const GridContainer = styled(GridContainer_)`
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @keyframes moveTop {
+    0% {
+      transform: translateY(50vh);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
   gap: 0px;
   animation: none;
 `;
-const GridItem = styled(GridItem_)`
+const GridItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 8px;
+  svg {
+    width: 93%;
+    height: 93%;
+  }
 
   & > svg {
     fill: ${({ theme }) => theme.colors.white};

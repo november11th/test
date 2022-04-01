@@ -9,10 +9,10 @@
             <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
             <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlurOuter1"/>
         </filter>
-        <path id="b" d="m14 4-7 7 7 7"/>
+        <path id="path-arrow" d="m14 4-7 7 7 7"/>
     </defs>
-    <g transform="rotate(-180 10.5 11)" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <use fill="#000" filter="url(#a)" xlink:href="#b"/>
-        <use stroke="#333" stroke-width="1.8" xlink:href="#b"/>
+    <g id="arrow" transform="rotate(-180 10.5 11)" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+<!--        <use fill="#000" filter="url(#a)" xlink:href="#b"/>-->
+        <use stroke="#333" stroke-width="1.8" href="#path-arrow"/>
     </g>
 </svg>

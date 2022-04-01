@@ -1,22 +1,32 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
-
-import CardList from "../components/card/CardList";
-import InnerContainerBase from "../components/layout/InnerContainerBase";
-import ProjectJoinCard from "../components/intro/ProjectJoinCard";
-import IntroBanner from "../components/intro/IntroBanner";
-import { newBannerList } from "../temp_data/banner";
+import { TEMP_BANNER_LIST } from "../temp_data/banner";
 import { Banner } from "../types/banner";
 import { CardData } from "../types/cardData";
 import { sampleDataList } from "../temp_data/data";
+import DataTitleCardList from "../components/card/DataTitleCardList";
+import React, { useRef } from "react";
+import Text from "../components/elements/Text";
+import { theme } from "../styles/theme";
+import Link from "next/link";
+import { useSetNavBarTheme } from "../hooks/useNavBarTheme";
+import useNavBarThemeEffectWithScroll from "../hooks/useNavBarThemeEffectWithScroll";
+import IntroImageBanner from "../components/intro/IntroImageBanner";
+import ScrollTopFloatingButton from "../components/elements/ScrollTopFloatingButton";
 
-export const Container = styled(InnerContainerBase)`
-  margin-top: ${({ theme }) => theme.size.navBarHeight};
+export const Container = styled.div`
+  position: relative;
+`;
+
+const BannerWrapper = styled.div`
+  background-color: white;
 `;
 
 const DataListWrapper = styled.div`
-  padding-top: 169px;
-  padding-bottom: 40px;
+  background-color: ${({ theme }) => theme.colors.cardListBackground};
+
+  padding-top: 30px;
+  padding-bottom: 100px;
 `;
 
 interface Props {
@@ -24,7 +34,54 @@ interface Props {
   dataList: CardData[];
 }
 
+const RequestWrapper = styled.div`
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 154px 0px;
+`;
+
+const RequestTitleWrapper = styled.div``;
+
+const RequestDescriptionWrapper = styled.div`
+  margin-top: 35px;
+`;
+
+const RequestButtonWrapper = styled.div`
+  margin-top: 67px;
+`;
+
+const RequestButton = styled.a`
+  padding: 12px 44px;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.point8C};
+
+  &:hover {
+    background-color: #5d5fef;
+  }
+`;
+
 const Intro = ({ bannerList, dataList }: Props) => {
+  const ref = useRef<any>(null);
+  useSetNavBarTheme("black");
+
+  useNavBarThemeEffectWithScroll({
+    id: "data-scroll",
+    trigger: ref.current,
+    start: "bottom 50px",
+    end: "bottom bottom",
+    onEnterColor: "gray",
+    onLeaveBackColor: "black",
+  });
+
   return (
     <>
       <Head>
@@ -36,10 +93,37 @@ const Intro = ({ bannerList, dataList }: Props) => {
         />
       </Head>
       <Container>
-        <IntroBanner bannerList={bannerList} />
+        <BannerWrapper ref={ref}>
+          <IntroImageBanner bannerList={bannerList} />
+        </BannerWrapper>
         <DataListWrapper>
-          <CardList dataList={dataList} />
+          <DataTitleCardList
+            cardList={dataList}
+            totalCardCount={dataList.length}
+          />
         </DataListWrapper>
+        <RequestWrapper>
+          <RequestTitleWrapper>
+            <Text type={"title"} scale={"4"}>
+              마음에 드는 데이터가 없나요?
+            </Text>
+          </RequestTitleWrapper>
+          <RequestDescriptionWrapper>
+            <Text type={"copy"} scale={"4"}>
+              아래 데이터 요청하기 버튼을 눌러 새로운 데이터를 요청하세요.
+            </Text>
+          </RequestDescriptionWrapper>
+          <RequestButtonWrapper>
+            <Link href={"/request"} passHref={true}>
+              <RequestButton>
+                <Text type={"copy"} scale={"6"} color={theme.colors.white}>
+                  데이터 요청하기
+                </Text>
+              </RequestButton>
+            </Link>
+          </RequestButtonWrapper>
+        </RequestWrapper>
+        <ScrollTopFloatingButton />
       </Container>
     </>
   );
@@ -47,7 +131,7 @@ const Intro = ({ bannerList, dataList }: Props) => {
 
 export async function getStaticProps() {
   return {
-    props: { bannerList: newBannerList, dataList: sampleDataList },
+    props: { bannerList: TEMP_BANNER_LIST, dataList: sampleDataList },
   };
 }
 

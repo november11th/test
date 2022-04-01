@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import InnerContainerBase from "./InnerContainerBase";
 import Text from "../elements/Text";
-import { TERMS_OF_USE } from "../../assets/images/documents/terms_of_use";
 import PuzzleMarkdown from "../elements/PuzzleMarkdown";
 import FullPageContainer from "./FullPageContainer";
 

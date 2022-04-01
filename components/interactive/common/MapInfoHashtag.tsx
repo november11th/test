@@ -28,8 +28,8 @@ interface Props {
 const MapInfoHashtag = ({ hashtagArray, className }: Props) => {
   return (
     <Container className={className}>
-      {hashtagArray.map((x: string) => (
-        <Tag>
+      {hashtagArray.map((x: string, i: number) => (
+        <Tag key={i}>
           <Text type={"copy"} scale={"7"}>
             {x}
           </Text>

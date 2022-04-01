@@ -5,14 +5,17 @@ import FooterTextLink from "./FooterTextLink";
 import FooterLogo from "./FooterLogo";
 import Text from "../../elements/Text";
 import { theme } from "../../../styles/theme";
+import useNavBarStyle from "../../../hooks/useNavBarStyle";
 
-const Container = styled.footer`
+const Container = styled.footer<{ backgroundColor: string }>`
   position: relative;
   min-width: ${({ theme }) => theme.size.pageWidth};
+  padding-top: 60px;
   padding-left: ${({ theme }) => theme.size.layoutXPadding};
   padding-right: ${({ theme }) => theme.size.layoutXPadding};
+  padding-bottom: ${({ theme }) => theme.size.layoutBottomPadding};
   margin: 0 auto;
-  background-color: transparent;
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 const Inside = styled.div`
@@ -31,8 +34,10 @@ const InsideRowCopyright = styled.div`
 `;
 
 const Footer = () => {
+  const navBarStyle = useNavBarStyle();
+
   return (
-    <Container>
+    <Container backgroundColor={navBarStyle.backgroundColor}>
       <Inside>
         <InsideRowLink>
           <Link href={"/terms"} passHref>

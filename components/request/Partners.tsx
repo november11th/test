@@ -89,7 +89,7 @@ const Partners = () => {
       onLeaveBack: () => setNavBarTheme("black"),
     });
     return () => {
-      ScrollTrigger.getById("partner-scroll").kill(true);
+      ScrollTrigger.getById("partner-scroll")?.kill(true);
     };
   }, [setNavBarTheme]);
 

@@ -29,19 +29,25 @@ const IAPoiCongestionHourly = ({
   setSelectedItem,
   onButtonPress,
 }: Props) => {
+  const { desc, placeholder, footnoteHref } = text;
+
   return (
     <Container>
-      <ContainerDesc text={text.desc} />
+      <ContainerDesc text={desc} />
       <ContainerInput>
         <SearchInput
-          placeholder={text.placeholder}
+          placeholder={placeholder}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           options={options}
           onButtonPress={onButtonPress}
         />
       </ContainerInput>
-      <CongestionHourly congestionData={congestionData} metaData={metaData} />
+      <CongestionHourly
+        congestionData={congestionData}
+        metaData={metaData}
+        footnoteHref={footnoteHref}
+      />
     </Container>
   );
 };

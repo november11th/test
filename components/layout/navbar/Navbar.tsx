@@ -6,15 +6,9 @@ import NavbarLogo from "./NavbarLogo";
 import ProjectJoinButton from "./ProjectJoinButton";
 import { useRouter } from "next/router";
 import { useIsOpenMenuState } from "../../../recoil/menuDialog";
-import { theme } from "../../../styles/theme";
-import SvgIconMenuBlack from "../../../assets/images/layout/gnb-icon-menu-black.svg";
-import SvgIconMenuWhite from "../../../assets/images/layout/gnb-icon-menu-white.svg";
-import SvgIconLogoBlack from "../../../assets/images/layout/gnb-logo-black.svg";
-import SvgIconLogoWhite from "../../../assets/images/layout/gnb-logo-white.svg";
-import SvgIconSearchBlack from "../../../assets/images/layout/gnb-icon-search-black.svg";
-import SvgIconSearchWhite from "../../../assets/images/layout/gnb-icon-search-white.svg";
 import { useNavBarTheme } from "../../../hooks/useNavBarTheme";
 import NavbarSearchInput from "./NavbarSearchInput";
+import useNavBarStyle from "../../../hooks/useNavBarStyle";
 
 const Container = styled.header<{ backgroundColor: string }>`
   position: fixed;
@@ -62,44 +56,19 @@ const MenuButton = styled.span`
 const Navbar = () => {
   const [isOpenMenu, setIsOpenMenu] = useIsOpenMenuState();
   const [navBarTheme] = useNavBarTheme();
+  const navBarStyle = useNavBarStyle();
   const router = useRouter();
 
   useEffect(() => {
     setIsOpenMenu(false);
   }, [router.pathname, router.query, setIsOpenMenu]);
 
-  const navBarStyle = () => {
-    switch (navBarTheme) {
-      case "white":
-        return {
-          color: theme.colors.black,
-          backgroundColor: theme.colors.white,
-          menu: <SvgIconMenuBlack />,
-          logo: <SvgIconLogoBlack />,
-          search: <SvgIconSearchBlack />,
-        };
-      case "black":
-        return {
-          color: theme.colors.white,
-          backgroundColor: "transparent",
-          menu: <SvgIconMenuWhite />,
-          logo: <SvgIconLogoWhite />,
-          search: <SvgIconSearchWhite />,
-        };
-      default:
-        return {
-          color: theme.colors.black,
-          backgroundColor: theme.colors.white,
-        };
-    }
-  };
-
   return (
-    <Container backgroundColor={navBarStyle().backgroundColor}>
+    <Container backgroundColor={navBarStyle.backgroundColor}>
       <Inside>
         <ColumnLeft>
           <MenuButton onClick={() => setIsOpenMenu(true)}>
-            {navBarStyle().menu}
+            {navBarStyle.menu}
           </MenuButton>
           <Link href={"/request"} passHref>
             <ProjectJoinButton className={`theme--${navBarTheme}`}>
@@ -109,7 +78,7 @@ const Navbar = () => {
         </ColumnLeft>
         <ColumnCenter>
           <Link href={"/"} passHref>
-            <NavbarLogo>{navBarStyle().logo}</NavbarLogo>
+            <NavbarLogo>{navBarStyle.logo}</NavbarLogo>
           </Link>
         </ColumnCenter>
         <ColumnRight>

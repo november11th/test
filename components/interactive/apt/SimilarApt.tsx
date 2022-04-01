@@ -4,6 +4,8 @@ import Footnote from "../common/Footnote";
 import Meta from "../common/Meta";
 import SimilarAptMap from "./SimilarAptMap";
 import SimilarAptTable from "./SimilarAptTable";
+import { AptSimilarStat, Option } from "../../../types/interactiveApt";
+import { getLastYyyymm } from "../../../utils/common";
 
 const Container = styled.div`
   display: flex;
@@ -19,9 +21,11 @@ const TableContainer = styled(SimilarAptTable)`
 `;
 
 interface Props {
-  data: any;
+  data: AptSimilarStat;
+  footnoteHref?: string;
+  onTablePress: (item: Option) => void;
 }
-const SimilarApt = ({ data }: Props) => {
+const SimilarApt = ({ data, footnoteHref, onTablePress }: Props) => {
   const { selected, similar } = data;
   const map = useRef<any>(null);
 
@@ -42,12 +46,15 @@ const SimilarApt = ({ data }: Props) => {
   return (
     <Container>
       <Meta
-        title={"[송파동부센트레빌]의 유사 아파트 상위 5개"} /* 추후 수정 */
-        desc={"2022.03 거주 기준"}
+        title={`${selected.name}의 유사 아파트 상위 5개`}
+        desc={`${getLastYyyymm(new Date(), ".")} 거주 기준`}
       />
       <MapContainer id="map" />
-      <TableContainer data={[data.selected, ...data.similar]} />
-      <Footnote href={"/data/주거생활?tabIndex=1"} />
+      <TableContainer
+        data={[data.selected, ...data.similar]}
+        onTablePress={onTablePress}
+      />
+      <Footnote href={footnoteHref} />
     </Container>
   );
 };

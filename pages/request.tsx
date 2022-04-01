@@ -8,6 +8,7 @@ import RequestProjectList from "../components/request/RequestProjectList";
 import RequestFloatingTab from "../components/request/RequestFloatingTab";
 import InnerContainerBase from "../components/layout/InnerContainerBase";
 import { useNavBarTheme } from "../hooks/useNavBarTheme";
+import useScrollToTop from "../hooks/useScrollToTop";
 
 const InnerContainer = styled(InnerContainerBase)``;
 const Div = styled.div``;
@@ -22,6 +23,7 @@ type ObjType = {
 const Request = () => {
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [, setNavBarTheme] = useNavBarTheme();
+  useScrollToTop(tabIndex);
 
   useEffect(() => {
     tabIndex === 0 ? setNavBarTheme("black") : setNavBarTheme("white");

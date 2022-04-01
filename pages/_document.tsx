@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { SITE_URL } from "../assets/common_texts";
 import React from "react";
+import { SITE_URL } from "../next-seo.config";
 
 class MyDocument extends Document {
   render() {
@@ -77,7 +77,11 @@ class MyDocument extends Document {
             href={`${SITE_URL}/favicons/favicon-128.png`}
             sizes="128x128"
           />
-          {/*<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxd6d5ad513e30401db8081301d0630c51" />*/}
+          <script
+            src={
+              "https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxd6d5ad513e30401db8081301d0630c51"
+            }
+          />
         </Head>
         <body>
           <Main />

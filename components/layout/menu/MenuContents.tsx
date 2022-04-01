@@ -1,6 +1,5 @@
 import React from "react";
 import CloseButtonSVG from "../../../assets/images/common/icon-layer_close.svg";
-import Link from "next/link";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import TextWithCount from "../../elements/TextWithCount";
@@ -72,11 +71,6 @@ const MenuContents = ({ isOpen, onClose }: Props) => {
     url: `/data/${data}`,
   }));
 
-  const totalInsightCount = menuItem.reduce(
-    (sum: number, currentItem: MenuItem) => (sum += currentItem.count),
-    0
-  );
-
   return (
     <Menu
       animate={{ x: isOpen ? 640 : -640 }}
@@ -90,11 +84,6 @@ const MenuContents = ({ isOpen, onClose }: Props) => {
           <MenuItem link={"/about"}>
             <Text type={"title"} scale={"5"}>
               서비스 소개
-            </Text>
-          </MenuItem>
-          <MenuItem link={"/insights"}>
-            <Text type={"title"} scale={"5"}>
-              모든 인사이트 보기
             </Text>
           </MenuItem>
           <DataCatalogList>
